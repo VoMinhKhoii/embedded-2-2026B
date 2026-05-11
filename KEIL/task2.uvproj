@@ -474,14 +474,14 @@
               <FilePath>.\sys_init.c</FilePath>
             </File>
             <File>
-              <FileName>game_draw.h</FileName>
+              <FileName>game_screens.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\game_draw.h</FilePath>
+              <FilePath>.\game_screens.h</FilePath>
             </File>
             <File>
-              <FileName>game_draw.c</FileName>
+              <FileName>game_screens.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\game_draw.c</FilePath>
+              <FilePath>.\game_screens.c</FilePath>
             </File>
             <File>
               <FileName>tetris_draw.h</FileName>
@@ -494,24 +494,24 @@
               <FilePath>.\tetris_draw.c</FilePath>
             </File>
             <File>
-              <FileName>spawn_block.c</FileName>
+              <FileName>tetromino_spawn.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\spawn_block.c</FilePath>
+              <FilePath>.\tetromino_spawn.c</FilePath>
             </File>
             <File>
-              <FileName>spawn_block.h</FileName>
+              <FileName>tetromino_spawn.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\spawn_block.h</FilePath>
+              <FilePath>.\tetromino_spawn.h</FilePath>
             </File>
             <File>
-              <FileName>rotation.c</FileName>
+              <FileName>tetromino_rotation.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\rotation.c</FilePath>
+              <FilePath>.\tetromino_rotation.c</FilePath>
             </File>
             <File>
-              <FileName>rotation.h</FileName>
+              <FileName>tetromino_rotation.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\rotation.h</FilePath>
+              <FilePath>.\tetromino_rotation.h</FilePath>
             </File>
             <File>
               <FileName>playfield.c</FileName>
@@ -522,6 +522,16 @@
               <FileName>playfield.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\playfield.h</FilePath>
+            </File>
+            <File>
+              <FileName>game_session.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\game_session.h</FilePath>
+            </File>
+            <File>
+              <FileName>game_session.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\game_session.c</FilePath>
             </File>
           </Files>
         </Group>

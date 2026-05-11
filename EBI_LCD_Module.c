@@ -35,9 +35,9 @@ static volatile uint8_t  _td_active  = 0;
 static volatile uint8_t  _td_ticks   = 0;
 static volatile uint8_t  _td_target  = 0;
 static volatile uint16_t _td_timeout = 0;
-uint8_t minutes = 0; // minutes counter
-uint8_t seconds = 0; // seconds counter
-uint8_t timer_running = 0;  // start 
+uint8_t minutes = 0;
+uint8_t seconds = 0;
+uint8_t timer_running = 0;
 static uint8_t _game_ms_count = 0;
 
 /**
@@ -55,8 +55,7 @@ void Timer3_Init(void)
     CLK_EnableModuleClock(TMR3_MODULE);
 	CLK_SetModuleClock(TMR3_MODULE, CLK_CLKSEL1_TMR3SEL_PCLK1, MODULE_NoMsk);
 
-    /* Set compare value for 100 ms period with 12 MHz HXT */
-    //TIMER3->CMP = 1199999; /* (12,000,000 / 10) - 1 */
+    /* Set the compare value for a 100 ms period. */
 	TIMER3->CMP = 9599999; 
 
     /* Configure Timer3: Periodic mode, interrupt enabled, prescale = 0 */
@@ -72,7 +71,7 @@ void Timer3_Init(void)
     Timer3_flag = 0;
     Timer3_cnt = 0;
 
-    /* Debug output */
+    /* Keep a UART trace during bring-up. */
     printf("Timer3 CMP: %d, CTL: 0x%08X\n", TIMER3->CMP, TIMER3->CTL);
 }
 
@@ -92,10 +91,10 @@ void TMR3_IRQHandler(void)
     Timer3_flag = 1;
     Timer3_cnt++;
 
-    // only accumulate real play-time when timer_running==1
+    /* Accumulate elapsed time only while gameplay is active. */
     if (timer_running)
     {
-        if (++_game_ms_count >= 10)  // 10*100ms = 1s
+        if (++_game_ms_count >= 10)
         {
             _game_ms_count = 0;
             if (++seconds >= 60)
@@ -126,14 +125,14 @@ uint8_t TimerDelay_Done(void)
         return 1;
     }
 
-    /* completed normally? */
+    /* Complete when the requested delay has elapsed. */
     if (_td_ticks >= _td_target) {
         _td_active = 0;
         printf("Delay complete: %u ticks\n", (unsigned)_td_ticks);
         return 1;
     }
 
-    /* or timed out? */
+    /* Fall back to a timeout so the main loop cannot stall forever. */
     _td_timeout++;
     if (_td_timeout >= TIMEOUT_TICKS) {
         _td_active = 0;
@@ -141,7 +140,6 @@ uint8_t TimerDelay_Done(void)
         return 1;
     }
 
-    /* still waiting */
     return 0;
 }
 /**
@@ -181,21 +179,6 @@ void LCD_WR_DATA(uint16_t dat)
     EBI0_WRITE_DATA16(0x00030000, dat);
 
 }
-
-/**
- * @brief       Read back data from LCD
- *
- * @param       None
- *
- * @return      The read back data
- *
- * @details     To read data from LCD thru the EBI interface
- */
-// uint16_t LCD_RD_DATA(void)
-// {
-//     return EBI0_READ_DATA16(0x00030000);
-
-// }
 
 /**
  * @brief       Set LCD window
@@ -240,17 +223,17 @@ void LCD_SetWindow(uint16_t x_s, uint16_t x_e, uint16_t y_s, uint16_t y_e)
  */
 void ILI9341_Initial(void)
 {
-    /* Hardware reset */
+    /* Reset the LCD controller before sending its init sequence. */
     SET_RST;
-    CLK_SysTickDelay(5000);     // Delay 5ms
+    CLK_SysTickDelay(5000);
 
     CLR_RST;
-    CLK_SysTickDelay(20000);    // Delay 20ms
+    CLK_SysTickDelay(20000);
 
     SET_RST;
-    CLK_SysTickDelay(40000);    // Delay 40ms
+    CLK_SysTickDelay(40000);
 
-    /* Initial control registers */
+    /* Program the LCD controller registers. */
     LCD_WR_REG(0xCB);
     LCD_WR_DATA(0x39);
     LCD_WR_DATA(0x2C);
@@ -416,37 +399,6 @@ void LCD_PutString(uint16_t x, uint16_t y, uint8_t *s, uint32_t fColor, uint32_t
 
 }
 
-/**
- * @brief       Put a larger 16x32 number (0~9) to LCD screen
- *
- * @param       x: the start position in the x-direction
- *              y: the start position in the y-direction
- *              c: the number 0~9
- *              fcolor: the front color
- *              bcolor: the background color
- * @return      None
- *
- * @details     To show a larger 16x32 number on the LCD screen
- */
-// void LCD_PutChar16x32(uint16_t x, uint16_t y, uint16_t c, uint32_t fColor, uint32_t bColor)
-// {
-//     uint32_t    i, j;
-//     uint16_t    m;
-
-//     for(i=0; i<32; i++) {
-//         m = Font16x32[c*32+i];
-//         LCD_SetWindow(x, x+15, y+i, y+i);
-//         for(j=0; j<16; j++) {
-//             if((m & 0x8000) == 0x8000) {
-//                 LCD_WR_DATA(fColor);
-//             } else {
-//                 LCD_WR_DATA(bColor);
-//             }
-//             m <<= 1;
-//         }
-//     }
-
-// }
 
 /**
  * @brief       Blank an area of LCD screen
@@ -471,136 +423,3 @@ void LCD_BlankArea(uint16_t X, uint16_t Y, uint16_t W, uint16_t H, uint16_t colo
     }
 
 }
-
-/**
- * @brief       Get X position from touch panel thru the ADC input
- *
- * @param       None
- *
- * @return      The X position on LCD screen
- *
- * @details     To get the X position when finger touching on the LCD screen
- */
-// uint16_t Get_TP_X(void)
-// {
-//     uint16_t    x_adc_in;
-//     uint16_t    X_pos;
-
-//     /*=== Get X from ADC input ===*/
-//     PB9 = 1;
-//     PH4 = 0;
-//     GPIO_SetMode(PB, BIT9, GPIO_MODE_OUTPUT);   // XR
-//     GPIO_SetMode(PH, BIT4, GPIO_MODE_OUTPUT);   // XL
-//     GPIO_SetMode(PH, BIT5, GPIO_MODE_INPUT);    // YD
-
-//     /* Configure the GPB8 ADC analog input pins. */
-//     SYS->GPB_MFPH &= ~(SYS_GPB_MFPH_PB8MFP_Msk | SYS_GPB_MFPH_PB9MFP_Msk);
-//     SYS->GPB_MFPH |= SYS_GPB_MFPH_PB8MFP_EADC0_CH8;
-
-//     /* Disable the GPB8 digital input path to avoid the leakage current. */
-//     GPIO_DISABLE_DIGITAL_PATH(PB, BIT8);
-
-//     /* Configure the sample module 1 for analog input channel 8 and software trigger source.*/
-//     EADC_ConfigSampleModule(EADC, 1, EADC_SOFTWARE_TRIGGER, 8); // YU
-
-//     /* Clear the A/D ADINT1 interrupt flag for safe */
-//     EADC_CLR_INT_FLAG(EADC, EADC_STATUS2_ADIF1_Msk);
-
-//     /* Enable the sample module 1 interrupt. */
-//     EADC_ENABLE_INT(EADC, BIT1);    //Enable sample module A/D ADINT1 interrupt.
-//     EADC_ENABLE_SAMPLE_MODULE_INT(EADC, 1, BIT1);    //Enable sample module 1 interrupt.
-//     NVIC_EnableIRQ(EADC01_IRQn);
-
-//     /* Reset the ADC interrupt indicator and trigger sample module 1 to start A/D conversion */
-//     g_u32AdcIntFlag_TP = 0;
-//     EADC_START_CONV(EADC, BIT1);
-
-//     /* Wait ADC interrupt (g_u32AdcIntFlag_TP will be set at IRQ_Handler function) */
-//     while(g_u32AdcIntFlag_TP == 0) {};
-//     x_adc_in = EADC_GET_CONV_DATA(EADC, 1)>>2;
-
-//     /*=== Calculate the X position ===*/
-//     X_pos = (x_adc_in - 170)/2.8;	// range of x_adc_in is [0:842]
-
-//     if(X_pos >= (LCD_W - 1)) X_pos = LCD_W - 1;
-
-//     printf("Position X: %d\n", X_pos);
-//     return X_pos;
-
-// }
-
-/**
- * @brief       Get Y position from touch panel thru the ADC input
- *
- * @param       None
- *
- * @return      The Y position on LCD screen
- *
- * @details     To get the Y position when finger touching on the LCD screen
- */
-// uint16_t Get_TP_Y(void)
-// {
-//     uint16_t    y_adc_in;
-//     uint16_t    Y_pos;
-
-//     /*=== Get Y from ADC input ===*/
-//     PB8 = 1;
-//     PH5 = 0;
-//     GPIO_SetMode(PB, BIT8, GPIO_MODE_OUTPUT);   // YU
-//     GPIO_SetMode(PH, BIT5, GPIO_MODE_OUTPUT);   // YD
-//     GPIO_SetMode(PH, BIT4, GPIO_MODE_INPUT);    // XL
-
-//     /* Configure the GPB9 ADC analog input pins. */
-//     SYS->GPB_MFPH &= ~(SYS_GPB_MFPH_PB8MFP_Msk | SYS_GPB_MFPH_PB9MFP_Msk);
-//     SYS->GPB_MFPH |= SYS_GPB_MFPH_PB9MFP_EADC0_CH9;
-
-//     /* Disable the GPB9 digital input path to avoid the leakage current. */
-//     GPIO_DISABLE_DIGITAL_PATH(PB, BIT9);
-
-//     /* Configure the sample module 2 for analog input channel 9 and software trigger source.*/
-//     EADC_ConfigSampleModule(EADC, 2, EADC_SOFTWARE_TRIGGER, 9); // XR
-
-//     /* Clear the A/D ADINT1 interrupt flag for safe */
-//     EADC_CLR_INT_FLAG(EADC, EADC_STATUS2_ADIF1_Msk);
-
-//     /* Enable the sample module 2 interrupt. */
-//     EADC_ENABLE_INT(EADC, BIT2);    //Enable sample module A/D ADINT1 interrupt.
-//     EADC_ENABLE_SAMPLE_MODULE_INT(EADC, 1, BIT2);    //Enable sample module 2 interrupt.
-//     NVIC_EnableIRQ(EADC02_IRQn);
-
-//     /* Reset the ADC interrupt indicator and trigger sample module 2 to start A/D conversion */
-//     g_u32AdcIntFlag_TP = 0;
-//     EADC_START_CONV(EADC, BIT2);
-
-//     /* Wait ADC interrupt (g_u32AdcIntFlag_TP will be set at IRQ_Handler function) */
-//     while(g_u32AdcIntFlag_TP == 0) {};
-//     y_adc_in = EADC_GET_CONV_DATA(EADC, 2)>>2;
-
-//     /*=== Calculate the Y position ===*/
-// 			Y_pos = (y_adc_in - 150)/2.34; // range of y_adc_in is [0:898.8]
-
-//     if(Y_pos >= (LCD_H - 1)) Y_pos = LCD_H - 1;
-
-//     printf("Position Y : %d \n", Y_pos);
-//     return Y_pos;
-
-// }
-
-/**
- * @brief       ADC01 IRQ handler
- *
- * @param       None
- *
- * @return      None
- *
- * @details     The ADC01 default IRQ, declared in startup_M480.s
- */
-// void EADC01_IRQHandler(void)
-// {
-//     /* Clear the A/D ADINT1 interrupt flag */
-//     EADC_CLR_INT_FLAG(EADC, EADC_STATUS2_ADIF1_Msk);
-
-//     g_u32AdcIntFlag_TP = 1;
-
-// }
-

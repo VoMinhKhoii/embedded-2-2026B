@@ -18,7 +18,7 @@
 // height of the 8×16 “NEXT” label
 #define NEXT_LABEL_H   16
 #include <stdint.h>
-#include "spawn_block.h"
+#include "tetromino_spawn.h"
 static const int8_t tetro[7][4][4][2] = {
     // I
     {{{0,1},{1,1},{2,1},{3,1}},

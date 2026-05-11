@@ -8,13 +8,13 @@
 #ifndef __EBI_LCD_MODULE_H__
 #define __EBI_LCD_MODULE_H__
 
-/* Define LCD and APP Size */
-#define LCD_W       240     // LCD Width at pixels
-#define LCD_H       320     // LCD Hight at pixels
-#define APP_W       60      // APP Icon Width at pixels
-#define APP_H       60      // APP Icon Hight at pixels
+/* LCD and application dimensions in pixels. */
+#define LCD_W       240
+#define LCD_H       320
+#define APP_W       60
+#define APP_H       60
 
-/* Define Standard Colors (RGB565 format) */
+/* Standard RGB565 colors. */
 #define C_WHITE     0xFFFF
 #define C_BLACK     0x0000
 #define C_BLUE      0x001F
@@ -25,14 +25,14 @@
 #define C_CYAN      0x7FFF
 #define C_YELLOW    0xFFE0
 
-// Characters
+/* Shared font tables and gameplay timer state. */
 extern uint8_t Font8x16[];
 extern uint16_t Font16x32[];
-extern uint8_t minutes; // minutes counter
-extern uint8_t seconds; // seconds counter
-extern uint8_t timer_running; // 0 = paused (splash/Game Over), 1 = play clock
+extern uint8_t minutes;
+extern uint8_t seconds;
+extern uint8_t timer_running;
 
-// Sub-functions
+/* LCD, timer, and drawing helpers. */
 void ILI9341_Initial(void);
 void Timer3_Init(void);
 void LCD_WR_REG(uint16_t cmd);

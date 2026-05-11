@@ -1,4 +1,4 @@
-#include "game_draw.h"
+#include "game_screens.h"
 #include "EBI_LCD_Module.h"
 #include <stdio.h>
 uint16_t currentScore = 0;
@@ -15,22 +15,22 @@ static uint8_t leaderboard_count = 0;
 char acString[32];  
 
 
-void AddToLeaderboard(uint16_t score,
-                      uint8_t  level,
-                      uint8_t  minutes,
-                      uint8_t  seconds)
+void RecordLeaderboardEntry(uint16_t score,
+                            uint8_t  level,
+                            uint8_t  minutes,
+                            uint8_t  seconds)
 {
     LeaderEntry newEntry;
     uint8_t     pos;
     uint8_t     i;
 
-    /* pack the new record */
+    /* Create the candidate entry. */
     newEntry.score   = score;
     newEntry.level   = level;
     newEntry.minutes = minutes;
     newEntry.seconds = seconds;
 
-    /* find insertion point */
+    /* Find the insertion point in descending score order. */
     pos = leaderboard_count;
     for (i = 0; i < leaderboard_count; i++) {
         if (score > leaderboard[i].score) {
@@ -39,9 +39,8 @@ void AddToLeaderboard(uint16_t score,
         }
     }
 
-    /* shift or cap */
+    /* Shift existing entries to make room if this score qualifies. */
     if (leaderboard_count < 100) {
-        /* make room */
         for (i = leaderboard_count; i > pos; i--) {
             leaderboard[i] = leaderboard[i - 1];
         }
@@ -55,17 +54,17 @@ void AddToLeaderboard(uint16_t score,
             }
             leaderboard[pos] = newEntry;
         }
-        /* else too low�ignore */
+        /* Ignore scores that fall outside the top 100. */
     }
 
-    /* update global hiscore */
+    /* Track the best score reached during this power cycle. */
     if (score > currentHighScore) {
         currentHighScore = score;
     }
 }
 
 
-void DrawStoneBorder(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
+void DrawScreenBorder(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
 {
     uint16_t i, j, color;
     for (i = 0; i + STONE_BLOCK <= w; i += STONE_BLOCK) {
@@ -87,14 +86,14 @@ void DrawStoneBorder(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
 }
 
 
-void DisplayGameField(void)
+void DrawGameplayScreen(void)
 {
-		char hiString[10];
+	char hiString[10];
     LCD_BlankArea(0,0,240,320,C_BLACK);
-    DrawStoneBorder(0, 0, 240, 320);
-    DrawStoneBorder(0, 0, 160, 320);
-    DrawStoneBorder(150, 0,  90, 100);
-    DrawStoneBorder(150, 0,  90, 245);
+    DrawScreenBorder(0, 0, 240, 320);
+    DrawScreenBorder(0, 0, 160, 320);
+    DrawScreenBorder(150, 0,  90, 100);
+    DrawScreenBorder(150, 0,  90, 245);
     LCD_PutString(179, 10, (uint8_t*)"NEXT",   C_WHITE, C_BLACK);
     LCD_PutString(167,100, (uint8_t*)"HISCORE",C_WHITE, C_BLACK);
     LCD_PutString(176,135, (uint8_t*)"SCORE",  C_WHITE, C_BLACK);
@@ -104,13 +103,13 @@ void DisplayGameField(void)
     LCD_PutString(176,260, (uint8_t*)"PAUSE",  C_WHITE, C_BLACK);
     LCD_PutString(173,275, (uint8_t*)"SW2 TO", C_WHITE, C_BLACK);
     LCD_PutString(171,290, (uint8_t*)"RESTART",C_WHITE, C_BLACK);
-		    /* numeric HISCORE just under its label */
+    /* Draw the current session high score under its label. */
     sprintf(hiString, "%u", currentHighScore);
     LCD_PutString(176, 115, (uint8_t*)hiString, C_WHITE, C_BLACK);
 }
 
 
-void StartGameField(void)
+void DrawStartScreen(void)
 {
 		LCD_BlankArea(0, 0, LCD_W, LCD_H, C_BLACK);
 		LCD_PutString(85,10,(uint8_t*)"TETRIS ", C_YELLOW, C_BLACK);
@@ -120,13 +119,13 @@ void StartGameField(void)
 }
 
 
-void GameOverField(void)
+void DrawGameOverScreen(void)
 {
     LCD_BlankArea(0, 0, LCD_W, LCD_H, C_BLACK);
     LCD_PutString(80,10,(uint8_t*)"GAME OVER", C_YELLOW, C_BLACK);
     LCD_PutString(70,250,(uint8_t*)"Press SW2 to restart", C_YELLOW, C_BLACK);
     LCD_PutString(35,300,(uint8_t*)"Press SW1 for LeaderBoard", C_YELLOW, C_BLACK);
-    // Display the final score, level, and time
+    /* Show the final score, level, and elapsed time. */
     char timeString[6];
     sprintf(timeString, "%02d:%02d", minutes, seconds);
     LCD_PutString(105, 100, (uint8_t*)"TIME", C_WHITE, C_BLACK);
@@ -139,60 +138,43 @@ void GameOverField(void)
     LCD_PutString(185, 130, (uint8_t*)acString, C_WHITE, C_BLACK);
 }
 
-/*--- LeaderBoard ------------------------------------------------------------
-   Clear screen, show column headers (Rank  Score  Level  Time), then top 10 entries,
-   spaced 20 px vertically, and finally SW2 restart prompt at the bottom.
------------------------------------------------------------------------------*/
-void LeaderBoard(void)
+/* Draw the top leaderboard entries and restart prompt. */
+void DrawLeaderboardScreen(void)
 {
     char entryString[32];
     uint8_t i;
     uint8_t toShow;
     uint16_t y;
 
-    /* full-screen clear */
+    /* Clear the screen and draw the table header. */
     LCD_BlankArea(0, 0, LCD_W, LCD_H, C_BLACK);
-
-    /* title */
     LCD_PutString(70,  10, (uint8_t*)"LEADERBOARD",      C_YELLOW, C_BLACK);
-
-    /* column headers */
     LCD_PutString( 10,  30, (uint8_t*)"Rank",            C_WHITE, C_BLACK);
-    LCD_PutString(55,30, (uint8_t*)"Score",           C_WHITE, C_BLACK);  /* use literal 50 */
+    LCD_PutString(55, 30, (uint8_t*)"Score",           C_WHITE, C_BLACK);
     LCD_PutString(120,  30, (uint8_t*)"Level",           C_WHITE, C_BLACK);
     LCD_PutString(180,  30, (uint8_t*)"Time",            C_WHITE, C_BLACK);
 
-    /* how many entries to show */
     if (leaderboard_count < 10) {
         toShow = leaderboard_count;
     } else {
         toShow = 10;
     }
 
-    /* list each entry */
     for (i = 0; i < toShow; i++)
     {
-        y = 50 + (uint16_t)i * 20;  /* rows at 50,70,90,... */
-
-        /* Rank */
+        y = 50 + (uint16_t)i * 20;
         sprintf(entryString, "%2u", (uint16_t)(i + 1));
         LCD_PutString( 10, y, (uint8_t*)entryString, C_WHITE, C_BLACK);
-
-        /* Score */
         sprintf(entryString, "%5u", leaderboard[i].score);
         LCD_PutString( 55, y, (uint8_t*)entryString, C_WHITE, C_BLACK);
-
-        /* Level */
         sprintf(entryString, "L%1u", leaderboard[i].level);
         LCD_PutString(120, y, (uint8_t*)entryString, C_WHITE, C_BLACK);
-
-        /* Time mm:ss */
         sprintf(entryString, "%02u:%02u",
                 leaderboard[i].minutes,
                 leaderboard[i].seconds);
         LCD_PutString(180, y, (uint8_t*)entryString, C_WHITE, C_BLACK);
     }
 
-    /* footer: SW2 to restart */
+    /* Keep restart instructions visible at the bottom of the screen. */
     LCD_PutString( 60, 300, (uint8_t*)"SW2 TO RESTART",    C_WHITE, C_BLACK);
 }
