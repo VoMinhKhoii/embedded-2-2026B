@@ -12,8 +12,8 @@
 
 
 
-# 1 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 1 3
-# 56 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 3
+# 1 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 1 3
+# 56 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 3
 typedef signed char int8_t;
 typedef signed short int int16_t;
 typedef signed int int32_t;
@@ -67,7 +67,7 @@ typedef unsigned int uintptr_t;
 typedef signed long long intmax_t;
 typedef unsigned long long uintmax_t;
 # 8 ".\\playfield.h" 2
-# 1 ".\\spawn_block.h" 1
+# 1 ".\\tetromino_spawn.h" 1
 
 
 
@@ -84,9 +84,9 @@ typedef enum {
     TETROMINO_COUNT
 } TetrominoType;
 
-void InitSpawn(void);
-// Function to spawn a new tetromino
-TetrominoType SpawnTetromino(uint16_t *originX, uint16_t *originY);
+void InitializeTetrominoQueue(void);
+
+TetrominoType SpawnQueuedTetromino(uint16_t *originX, uint16_t *originY);
 # 9 ".\\playfield.h" 2
 
 
@@ -95,14 +95,16 @@ static uint16_t locked_count = 0;
 
 
 typedef struct {
-    uint8_t col; // column index (0 to 14 -1)
-    uint8_t row; // row index (0 to 30 -1)
-    TetrominoType type; // block type/color
+    uint8_t col;
+    uint8_t row;
+    TetrominoType type;
 } LockedBlock;
 static LockedBlock locked_blocks[400];
 static int locked_block_count = 0;
 void ClearPlayfield(void);
 void RedrawPlayfield(void);
+void DrawPlayfieldBackground(void);
+void DrawPlayfieldCellBackground(uint16_t x, uint16_t y);
 uint8_t CanPlaceTetromino(TetrominoType t,
                           uint16_t x, uint16_t y, uint8_t rot);
 uint8_t CanMoveDown(TetrominoType t,
@@ -119,26 +121,24 @@ int ClearFullLines(void);
 void LockTetromino(TetrominoType t,
                    uint16_t x, uint16_t y, uint8_t rot);
 # 2 "playfield.c" 2
-# 1 ".\\game_draw.h" 1
-# 11 ".\\game_draw.h"
-extern uint16_t currentScore; // Declare currentScore as extern
+# 1 ".\\game_screens.h" 1
+# 15 ".\\game_screens.h"
+extern uint16_t currentScore;
+extern uint8_t level;
+extern uint8_t minutes;
+extern uint8_t seconds;
+extern char acString[32];
+extern uint16_t currentHighScore;
+void DrawScreenBorder(uint16_t x, uint16_t y, uint16_t w, uint16_t h);
+void DrawGameplayScreen(void);
+void DrawStartScreen(void);
+void DrawGameOverScreen(void);
+void DrawLeaderboardScreen(void);
 
-extern uint8_t level; // Declare level as extern
-extern uint8_t minutes; // Declare as extern
-extern uint8_t seconds; // Declare as extern
-extern char acString[32]; // This should be large enough to hold the score, level, and time
-
-extern uint16_t currentHighScore; // NEW: highest ever this session
-void DrawStoneBorder(uint16_t x, uint16_t y, uint16_t w, uint16_t h);
-void DisplayGameField(void);
-void StartGameField(void);
-void GameOverField(void);
-void LeaderBoard(void);
-
-void AddToLeaderboard(uint16_t score,
-                      uint8_t level,
-                      uint8_t minutes,
-                      uint8_t seconds);
+void RecordLeaderboardEntry(uint16_t score,
+                            uint8_t level,
+                            uint8_t minutes,
+                            uint8_t seconds);
 # 3 "playfield.c" 2
 # 1 ".\\tetris_draw.h" 1
 # 13 ".\\tetris_draw.h"
@@ -147,7 +147,7 @@ void AddToLeaderboard(uint16_t score,
 
 
 
-// height of the 8×16 “NEXT” label
+// height of the 8?16 ?NEXT? label
 
 
 
@@ -196,6 +196,38 @@ void DrawBlock(uint16_t x, uint16_t y, TetrominoType type);
 # 4 "playfield.c" 2
 uint8_t playfield[14][30];
 
+static uint16_t GetPlayfieldCellColor(int col, int row)
+{
+    return ((col + row) & 1) ? 0xA514 : 0xAFB7;
+}
+
+void DrawPlayfieldBackground(void)
+{
+    int c, r;
+
+    for (c = 0; c < 14; c++) {
+        for (r = 0; r < 30; r++) {
+            LCD_BlankArea(10 + c * 10,
+                          10 + r * 10,
+                          10,
+                          10,
+                          GetPlayfieldCellColor(c, r));
+        }
+    }
+}
+
+void DrawPlayfieldCellBackground(uint16_t x, uint16_t y)
+{
+    int col = ((int)x - 10) / 10;
+    int row = ((int)y - 10) / 10;
+
+    if (col < 0 || col >= 14 || row < 0 || row >= 30) {
+        return;
+    }
+
+    LCD_BlankArea(x, y, 10, 10, GetPlayfieldCellColor(col, row));
+}
+
 void ClearPlayfield(void)
 {
     int c, r;
@@ -204,30 +236,17 @@ void ClearPlayfield(void)
         for (r = 0; r < 30; r++)
             playfield[c][r] = 0;
 
-    locked_block_count = 0; // reset the real block-count
+    locked_block_count = 0;
 
 
-    LCD_BlankArea(
-      10,
-      10,
-      14 * 10,
-      30 * 10,
-      0x0000
-    );
+    DrawPlayfieldBackground();
 }
 void RedrawPlayfield(void)
 {
     int i;
 
 
-    LCD_BlankArea(
-      10,
-      10,
-      14 * 10,
-      30 * 10,
-      0x0000
-    );
-
+    DrawPlayfieldBackground();
 
     for (i = 0; i < locked_block_count; i++)
     {
@@ -258,7 +277,6 @@ uint8_t CanPlaceTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
         c = col + dx;
         r = row + dy;
 
-
         if (c < 0 || c >= 14 ||
             r < 0 || r >= 30 ||
             playfield[c][r])
@@ -283,7 +301,7 @@ void LockTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
         int r = base_row + dy;
 
         if (c >= 0 && c < 14 && r >= 0 && r < 30) {
-            playfield[c][r] = 1; // mark playfield occupied
+            playfield[c][r] = 1;
 
             if (locked_block_count < 400) {
                 locked_blocks[locked_block_count].col = c;
@@ -294,6 +312,7 @@ void LockTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
         }
     }
 }
+
 uint8_t CanMoveDown(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
 {
     return CanPlaceTetromino(t, x, y + 10, rot);
@@ -334,7 +353,6 @@ int ClearFullLines(void)
 
         if (full_line)
         {
-
             for (r = row; r > 0; r--)
             {
                 for (c = 0; c < 14; c++)
@@ -342,7 +360,6 @@ int ClearFullLines(void)
                     playfield[c][r] = playfield[c][r - 1];
                 }
             }
-
             for (c = 0; c < 14; c++)
                 playfield[c][0] = 0;
 
@@ -352,7 +369,6 @@ int ClearFullLines(void)
             {
                 if (locked_blocks[i].row == row)
                 {
-
                     locked_blocks[i] = locked_blocks[locked_block_count - 1];
                     locked_block_count--;
                 }
@@ -365,10 +381,9 @@ int ClearFullLines(void)
             }
 
             cleared_lines++;
-            row++; // re-check this row index after shift
+            row++;
         }
     }
-
 
     if (cleared_lines > 0)
     {

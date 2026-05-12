@@ -5,14 +5,12 @@
 # 1 "<command line>" 1
 # 1 "<built-in>" 2
 # 1 "spawn_block.c" 2
-// spawn_block.c
-
 # 1 ".\\spawn_block.h" 1
 
 
 
-# 1 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 1 3
-# 56 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 3
+# 1 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 1 3
+# 56 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 3
 typedef signed char int8_t;
 typedef signed short int int16_t;
 typedef signed int int32_t;
@@ -79,9 +77,9 @@ typedef enum {
 } TetrominoType;
 
 void InitSpawn(void);
-// Function to spawn a new tetromino
+
 TetrominoType SpawnTetromino(uint16_t *originX, uint16_t *originY);
-# 4 "spawn_block.c" 2
+# 2 "spawn_block.c" 2
 # 1 ".\\tetris_draw.h" 1
 # 13 ".\\tetris_draw.h"
 // NEXT box geometry
@@ -89,7 +87,7 @@ TetrominoType SpawnTetromino(uint16_t *originX, uint16_t *originY);
 
 
 
-// height of the 8×16 “NEXT” label
+// height of the 8?16 ?NEXT? label
 
 
 
@@ -135,17 +133,15 @@ void DrawTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot);
 void ClearTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot);
 void DrawNextTetromino(TetrominoType t);
 void DrawBlock(uint16_t x, uint16_t y, TetrominoType type);
-# 5 "spawn_block.c" 2
+# 3 "spawn_block.c" 2
 # 1 ".\\game_draw.h" 1
 # 11 ".\\game_draw.h"
-extern uint16_t currentScore; // Declare currentScore as extern
-
-extern uint8_t level; // Declare level as extern
-extern uint8_t minutes; // Declare as extern
-extern uint8_t seconds; // Declare as extern
-extern char acString[32]; // This should be large enough to hold the score, level, and time
-
-extern uint16_t currentHighScore; // NEW: highest ever this session
+extern uint16_t currentScore;
+extern uint8_t level;
+extern uint8_t minutes;
+extern uint8_t seconds;
+extern char acString[32];
+extern uint16_t currentHighScore;
 void DrawStoneBorder(uint16_t x, uint16_t y, uint16_t w, uint16_t h);
 void DisplayGameField(void);
 void StartGameField(void);
@@ -156,17 +152,16 @@ void AddToLeaderboard(uint16_t score,
                       uint8_t level,
                       uint8_t minutes,
                       uint8_t seconds);
-# 6 "spawn_block.c" 2
+# 4 "spawn_block.c" 2
 # 1 "../../task2-complete\\EBI_LCD_Module.h" 1
-# 28 "../../task2-complete\\EBI_LCD_Module.h"
-// Characters
+# 29 "../../task2-complete\\EBI_LCD_Module.h"
 extern uint8_t Font8x16[];
 extern uint16_t Font16x32[];
-extern uint8_t minutes; // minutes counter
-extern uint8_t seconds; // seconds counter
-extern uint8_t timer_running; // 0 = paused (splash/Game Over), 1 = play clock
+extern uint8_t minutes;
+extern uint8_t seconds;
+extern uint8_t timer_running;
 
-// Sub-functions
+
 void ILI9341_Initial(void);
 void Timer3_Init(void);
 void LCD_WR_REG(uint16_t cmd);
@@ -180,39 +175,36 @@ uint16_t Get_TP_X(void);
 uint16_t Get_TP_Y(void);
 void TimerDelay_Start(uint8_t ticks);
 uint8_t TimerDelay_Done(void);
-# 7 "spawn_block.c" 2
+# 5 "spawn_block.c" 2
 
 
 
 extern volatile uint8_t Timer3_cnt;
-// simple linear congruential generator (LCG) for pseudo-random numbers
-static uint32_t lcg_seed; // no fixed initializer any more
+static uint32_t lcg_seed;
 
-// what piece is queued up next:
+
 static TetrominoType _next_piece;
 
-// helper RNG
+
 static uint32_t get_random(uint32_t modulus)
 {
     lcg_seed = (1103515245 * lcg_seed + 12345) & 0x7FFFFFFF;
     return lcg_seed % modulus;
 }
 
-// must be called once at startup to seed and draw the very first preview
 void InitSpawn(void)
 {
-    // seed with Timer3_cnt so the user’s press timing randomizes it
+
     lcg_seed = (uint32_t)Timer3_cnt;
 
-    // pick initial “next” piece
+
     _next_piece = (TetrominoType)get_random(7);
     DrawNextTetromino(_next_piece);
 }
 
-// spawn the queued piece, draw it at the top-center of the playfield,
-// then immediately pick & preview the *new* next piece
 TetrominoType SpawnTetromino(uint16_t *originX, uint16_t *originY)
 {
+
     *originX = 5 * 10;
     *originY = 10;
 

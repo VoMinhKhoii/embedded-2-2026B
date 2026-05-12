@@ -13,12 +13,12 @@
 
 
 
-# 1 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 1 3
-# 53 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 1 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 1 3
+# 53 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
     typedef unsigned int size_t;
-# 68 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 68 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
     typedef __builtin_va_list __va_list;
-# 87 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 87 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 typedef struct __fpos_t_struct {
     unsigned long long int __pos;
 
@@ -30,9 +30,9 @@ typedef struct __fpos_t_struct {
         unsigned int __state1, __state2;
     } __mbstate;
 } fpos_t;
-# 108 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 108 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 typedef struct __FILE FILE;
-# 119 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 119 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 struct __FILE {
     union {
         long __FILE_alignment;
@@ -43,10 +43,10 @@ struct __FILE {
 
     } __FILE_opaque;
 };
-# 138 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 138 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern FILE __stdin, __stdout, __stderr;
 extern FILE *__aeabi_stdin, *__aeabi_stdout, *__aeabi_stderr;
-# 224 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 224 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int remove(const char * ) __attribute__((__nonnull__(1)));
 
 
@@ -56,7 +56,7 @@ extern __attribute__((__nothrow__)) int remove(const char * ) __attribute__((__n
 
 
 extern __attribute__((__nothrow__)) int rename(const char * , const char * ) __attribute__((__nonnull__(1,2)));
-# 243 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 243 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) FILE *tmpfile(void);
 
 
@@ -65,18 +65,18 @@ extern __attribute__((__nothrow__)) FILE *tmpfile(void);
 
 
 extern __attribute__((__nothrow__)) char *tmpnam(char * );
-# 265 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 265 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int fclose(FILE * ) __attribute__((__nonnull__(1)));
-# 275 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 275 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int fflush(FILE * );
-# 285 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 285 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) FILE *fopen(const char * __restrict ,
                            const char * __restrict ) __attribute__((__nonnull__(1,2)));
-# 329 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 329 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) FILE *freopen(const char * __restrict ,
                     const char * __restrict ,
                     FILE * __restrict ) __attribute__((__nonnull__(2,3)));
-# 342 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 342 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) void setbuf(FILE * __restrict ,
                     char * __restrict ) __attribute__((__nonnull__(1)));
 
@@ -88,11 +88,11 @@ extern __attribute__((__nothrow__)) void setbuf(FILE * __restrict ,
 extern __attribute__((__nothrow__)) int setvbuf(FILE * __restrict ,
                    char * __restrict ,
                    int , size_t ) __attribute__((__nonnull__(1)));
-# 370 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 370 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 #pragma __printf_args
 extern __attribute__((__nothrow__)) int fprintf(FILE * __restrict ,
                     const char * __restrict , ...) __attribute__((__nonnull__(1,2)));
-# 393 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 393 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 #pragma __printf_args
 extern __attribute__((__nothrow__)) int _fprintf(FILE * __restrict ,
                      const char * __restrict , ...) __attribute__((__nonnull__(1,2)));
@@ -137,7 +137,7 @@ extern __attribute__((__nothrow__)) int _sprintf(char * __restrict , const char 
 #pragma __printf_args
 extern __attribute__((__nothrow__)) int __ARM_snprintf(char * __restrict , size_t ,
                      const char * __restrict , ...) __attribute__((__nonnull__(3)));
-# 460 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 460 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 #pragma __printf_args
 extern __attribute__((__nothrow__)) int _snprintf(char * __restrict , size_t ,
                       const char * __restrict , ...) __attribute__((__nonnull__(3)));
@@ -149,7 +149,7 @@ extern __attribute__((__nothrow__)) int _snprintf(char * __restrict , size_t ,
 #pragma __scanf_args
 extern __attribute__((__nothrow__)) int fscanf(FILE * __restrict ,
                     const char * __restrict , ...) __attribute__((__nonnull__(1,2)));
-# 503 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 503 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 #pragma __scanf_args
 extern __attribute__((__nothrow__)) int _fscanf(FILE * __restrict ,
                      const char * __restrict , ...) __attribute__((__nonnull__(1,2)));
@@ -178,11 +178,11 @@ extern __attribute__((__nothrow__)) int _scanf(const char * __restrict , ...) __
 #pragma __scanf_args
 extern __attribute__((__nothrow__)) int sscanf(const char * __restrict ,
                     const char * __restrict , ...) __attribute__((__nonnull__(1,2)));
-# 541 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 541 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 #pragma __scanf_args
 extern __attribute__((__nothrow__)) int _sscanf(const char * __restrict ,
                      const char * __restrict , ...) __attribute__((__nonnull__(1,2)));
-# 555 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 555 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int _vfscanf(FILE * __restrict , const char * __restrict , __va_list) __attribute__((__nonnull__(1,2)));
 extern __attribute__((__nothrow__)) int _vscanf(const char * __restrict , __va_list) __attribute__((__nonnull__(1)));
 extern __attribute__((__nothrow__)) int _vsscanf(const char * __restrict , const char * __restrict , __va_list) __attribute__((__nonnull__(1,2)));
@@ -204,13 +204,13 @@ extern __attribute__((__nothrow__)) int _vprintf(const char * __restrict , __va_
 
 extern __attribute__((__nothrow__)) int vfprintf(FILE * __restrict ,
                     const char * __restrict , __va_list ) __attribute__((__nonnull__(1,2)));
-# 584 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 584 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int vsprintf(char * __restrict ,
                      const char * __restrict , __va_list ) __attribute__((__nonnull__(1,2)));
-# 594 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 594 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int __ARM_vsnprintf(char * __restrict , size_t ,
                      const char * __restrict , __va_list ) __attribute__((__nonnull__(3)));
-# 609 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 609 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int _vsprintf(char * __restrict ,
                       const char * __restrict , __va_list ) __attribute__((__nonnull__(1,2)));
 
@@ -227,18 +227,18 @@ extern __attribute__((__nothrow__)) int _vfprintf(FILE * __restrict ,
 
 extern __attribute__((__nothrow__)) int _vsnprintf(char * __restrict , size_t ,
                       const char * __restrict , __va_list ) __attribute__((__nonnull__(3)));
-# 635 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 635 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 #pragma __printf_args
 extern __attribute__((__nothrow__)) int __ARM_asprintf(char ** , const char * __restrict , ...) __attribute__((__nonnull__(2)));
 extern __attribute__((__nothrow__)) int __ARM_vasprintf(char ** , const char * __restrict , __va_list ) __attribute__((__nonnull__(2)));
-# 649 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 649 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int fgetc(FILE * ) __attribute__((__nonnull__(1)));
-# 659 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 659 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) char *fgets(char * __restrict , int ,
                     FILE * __restrict ) __attribute__((__nonnull__(1,3)));
-# 673 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 673 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int fputc(int , FILE * ) __attribute__((__nonnull__(2)));
-# 683 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 683 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int fputs(const char * __restrict , FILE * __restrict ) __attribute__((__nonnull__(1,2)));
 
 
@@ -247,13 +247,13 @@ extern __attribute__((__nothrow__)) int fputs(const char * __restrict , FILE * _
 
 
 extern __attribute__((__nothrow__)) int getc(FILE * ) __attribute__((__nonnull__(1)));
-# 704 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 704 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
     extern __attribute__((__nothrow__)) int (getchar)(void);
-# 713 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 713 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) char *gets(char * ) __attribute__((__nonnull__(1)));
-# 725 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 725 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int putc(int , FILE * ) __attribute__((__nonnull__(2)));
-# 737 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 737 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
     extern __attribute__((__nothrow__)) int (putchar)(int );
 
 
@@ -270,26 +270,26 @@ extern __attribute__((__nothrow__)) int puts(const char * ) __attribute__((__non
 
 
 extern __attribute__((__nothrow__)) int ungetc(int , FILE * ) __attribute__((__nonnull__(2)));
-# 778 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 778 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) size_t fread(void * __restrict ,
                     size_t , size_t , FILE * __restrict ) __attribute__((__nonnull__(1,4)));
-# 794 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 794 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) size_t __fread_bytes_avail(void * __restrict ,
                     size_t , FILE * __restrict ) __attribute__((__nonnull__(1,3)));
-# 810 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 810 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) size_t fwrite(const void * __restrict ,
                     size_t , size_t , FILE * __restrict ) __attribute__((__nonnull__(1,4)));
-# 822 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 822 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int fgetpos(FILE * __restrict , fpos_t * __restrict ) __attribute__((__nonnull__(1,2)));
-# 833 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 833 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int fseek(FILE * , long int , int ) __attribute__((__nonnull__(1)));
-# 850 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 850 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int fsetpos(FILE * __restrict , const fpos_t * __restrict ) __attribute__((__nonnull__(1,2)));
-# 863 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 863 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) long int ftell(FILE * ) __attribute__((__nonnull__(1)));
-# 877 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 877 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) void rewind(FILE * ) __attribute__((__nonnull__(1)));
-# 886 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 886 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) void clearerr(FILE * ) __attribute__((__nonnull__(1)));
 
 
@@ -309,7 +309,7 @@ extern __attribute__((__nothrow__)) int ferror(FILE * ) __attribute__((__nonnull
 
 
 extern __attribute__((__nothrow__)) void perror(const char * );
-# 917 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
+# 917 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdio.h" 3
 extern __attribute__((__nothrow__)) int _fisatty(FILE * ) __attribute__((__nonnull__(1)));
 
 
@@ -317,8 +317,8 @@ extern __attribute__((__nothrow__)) int _fisatty(FILE * ) __attribute__((__nonnu
 extern __attribute__((__nothrow__)) void __use_no_semihosting_swi(void);
 extern __attribute__((__nothrow__)) void __use_no_semihosting(void);
 # 10 "../EBI_LCD_Module.c" 2
-# 1 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 1 3
-# 58 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 1 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 1 3
+# 58 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) void *memcpy(void * __restrict ,
                     const void * __restrict , size_t ) __attribute__((__nonnull__(1,2)));
 
@@ -329,7 +329,7 @@ extern __attribute__((__nothrow__)) void *memcpy(void * __restrict ,
 
 extern __attribute__((__nothrow__)) void *memmove(void * ,
                     const void * , size_t ) __attribute__((__nonnull__(1,2)));
-# 77 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 77 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) char *strcpy(char * __restrict , const char * __restrict ) __attribute__((__nonnull__(1,2)));
 
 
@@ -338,7 +338,7 @@ extern __attribute__((__nothrow__)) char *strcpy(char * __restrict , const char 
 
 
 extern __attribute__((__nothrow__)) char *strncpy(char * __restrict , const char * __restrict , size_t ) __attribute__((__nonnull__(1,2)));
-# 93 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 93 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) char *strcat(char * __restrict , const char * __restrict ) __attribute__((__nonnull__(1,2)));
 
 
@@ -347,7 +347,7 @@ extern __attribute__((__nothrow__)) char *strcat(char * __restrict , const char 
 
 
 extern __attribute__((__nothrow__)) char *strncat(char * __restrict , const char * __restrict , size_t ) __attribute__((__nonnull__(1,2)));
-# 117 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 117 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) int memcmp(const void * , const void * , size_t ) __attribute__((__nonnull__(1,2)));
 
 
@@ -364,7 +364,7 @@ extern __attribute__((__nothrow__)) int strcmp(const char * , const char * ) __a
 
 
 extern __attribute__((__nothrow__)) int strncmp(const char * , const char * , size_t ) __attribute__((__nonnull__(1,2)));
-# 141 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 141 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) int strcasecmp(const char * , const char * ) __attribute__((__nonnull__(1,2)));
 
 
@@ -374,28 +374,28 @@ extern __attribute__((__nothrow__)) int strcasecmp(const char * , const char * )
 
 
 extern __attribute__((__nothrow__)) int strncasecmp(const char * , const char * , size_t ) __attribute__((__nonnull__(1,2)));
-# 158 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 158 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) int strcoll(const char * , const char * ) __attribute__((__nonnull__(1,2)));
-# 169 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 169 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) size_t strxfrm(char * __restrict , const char * __restrict , size_t ) __attribute__((__nonnull__(2)));
-# 193 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 193 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) void *memchr(const void * , int , size_t ) __attribute__((__nonnull__(1)));
-# 209 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 209 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) char *strchr(const char * , int ) __attribute__((__nonnull__(1)));
-# 218 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 218 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) size_t strcspn(const char * , const char * ) __attribute__((__nonnull__(1,2)));
-# 232 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 232 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) char *strpbrk(const char * , const char * ) __attribute__((__nonnull__(1,2)));
-# 247 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 247 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) char *strrchr(const char * , int ) __attribute__((__nonnull__(1)));
-# 257 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 257 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) size_t strspn(const char * , const char * ) __attribute__((__nonnull__(1,2)));
-# 270 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 270 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) char *strstr(const char * , const char * ) __attribute__((__nonnull__(1,2)));
-# 280 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 280 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) char *strtok(char * __restrict , const char * __restrict ) __attribute__((__nonnull__(2)));
 extern __attribute__((__nothrow__)) char *_strtok_r(char * , const char * , char ** ) __attribute__((__nonnull__(2,3)));
-# 321 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 321 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) void *memset(void * , int , size_t ) __attribute__((__nonnull__(1)));
 
 
@@ -425,9 +425,9 @@ extern __attribute__((__nothrow__)) size_t strnlen(const char * , size_t ) __att
 
 
 extern __attribute__((__nothrow__)) size_t strlcpy(char * , const char * , size_t ) __attribute__((__nonnull__(1,2)));
-# 369 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 369 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) size_t strlcat(char * , const char * , size_t ) __attribute__((__nonnull__(1,2)));
-# 395 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
+# 395 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\string.h" 3
 extern __attribute__((__nothrow__)) void _membitcpybl(void * , const void * , int , int , size_t ) __attribute__((__nonnull__(1,2)));
 extern __attribute__((__nothrow__)) void _membitcpybb(void * , const void * , int , int , size_t ) __attribute__((__nonnull__(1,2)));
 extern __attribute__((__nothrow__)) void _membitcpyhl(void * , const void * , int , int , size_t ) __attribute__((__nonnull__(1,2)));
@@ -441,8 +441,8 @@ extern __attribute__((__nothrow__)) void _membitmovehb(void * , const void * , i
 extern __attribute__((__nothrow__)) void _membitmovewl(void * , const void * , int , int , size_t ) __attribute__((__nonnull__(1,2)));
 extern __attribute__((__nothrow__)) void _membitmovewb(void * , const void * , int , int , size_t ) __attribute__((__nonnull__(1,2)));
 # 11 "../EBI_LCD_Module.c" 2
-# 1 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 1 3
-# 91 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 1 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 1 3
+# 91 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
     typedef unsigned short wchar_t;
 
 
@@ -451,9 +451,9 @@ extern __attribute__((__nothrow__)) void _membitmovewb(void * , const void * , i
 typedef struct div_t { int quot, rem; } div_t;
 
 typedef struct ldiv_t { long int quot, rem; } ldiv_t;
-# 139 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 139 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) int __aeabi_MB_CUR_MAX(void);
-# 158 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 158 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) double atof(const char * ) __attribute__((__nonnull__(1)));
 
 
@@ -467,15 +467,15 @@ extern __attribute__((__nothrow__)) int atoi(const char * ) __attribute__((__non
 
 
 extern __attribute__((__nothrow__)) long int atol(const char * ) __attribute__((__nonnull__(1)));
-# 185 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 185 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) double strtod(const char * __restrict , char ** __restrict ) __attribute__((__nonnull__(1)));
-# 212 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 212 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) long int strtol(const char * __restrict ,
                         char ** __restrict , int ) __attribute__((__nonnull__(1)));
-# 243 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 243 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) unsigned long int strtoul(const char * __restrict ,
                                        char ** __restrict , int ) __attribute__((__nonnull__(1)));
-# 275 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 275 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) long long strtoll(const char * __restrict ,
                                   char ** __restrict , int )
                           __attribute__((__nonnull__(1)));
@@ -495,9 +495,9 @@ extern __attribute__((__nothrow__)) unsigned long long strtoull(const char * __r
 
 
 extern __attribute__((__nothrow__)) int rand(void);
-# 303 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 303 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) void srand(unsigned int );
-# 313 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 313 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 struct _rand_state { int __x[57]; };
 extern __attribute__((__nothrow__)) int _rand_r(struct _rand_state *);
 extern __attribute__((__nothrow__)) void _srand_r(struct _rand_state *, unsigned int);
@@ -530,35 +530,35 @@ extern __attribute__((__nothrow__)) void *malloc(size_t );
 
 
 extern __attribute__((__nothrow__)) void *realloc(void * , size_t );
-# 374 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 374 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 typedef int (*__heapprt)(void *, char const *, ...);
 extern __attribute__((__nothrow__)) void __heapstats(int (* )(void * ,
                                            char const * , ...),
                         void * ) __attribute__((__nonnull__(1)));
-# 390 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 390 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) int __heapvalid(int (* )(void * ,
                                            char const * , ...),
                        void * , int ) __attribute__((__nonnull__(1)));
-# 411 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 411 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) __attribute__((__noreturn__)) void abort(void);
-# 422 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 422 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) int atexit(void (* )(void)) __attribute__((__nonnull__(1)));
-# 444 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 444 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) __attribute__((__noreturn__)) void exit(int );
-# 460 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 460 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) __attribute__((__noreturn__)) void _Exit(int );
-# 471 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 471 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) char *getenv(const char * ) __attribute__((__nonnull__(1)));
-# 484 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 484 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) int system(const char * );
-# 497 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 497 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern void *bsearch(const void * , const void * ,
               size_t , size_t ,
               int (* )(const void *, const void *)) __attribute__((__nonnull__(1,2,5)));
-# 532 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 532 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern void qsort(void * , size_t , size_t ,
            int (* )(const void *, const void *)) __attribute__((__nonnull__(1,4)));
-# 560 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 560 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) __attribute__((__const__)) int abs(int );
 
 
@@ -567,11 +567,11 @@ extern __attribute__((__nothrow__)) __attribute__((__const__)) int abs(int );
 
 
 extern __attribute__((__nothrow__)) __attribute__((__const__)) div_t div(int , int );
-# 579 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 579 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) __attribute__((__const__)) long int labs(long int );
-# 589 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 589 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) __attribute__((__const__)) ldiv_t ldiv(long int , long int );
-# 644 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 644 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 typedef struct __sdiv32by16 { long quot, rem; } __sdiv32by16;
 typedef struct __udiv32by16 { unsigned long quot, rem; } __udiv32by16;
 
@@ -600,20 +600,20 @@ __attribute__((__value_in_regs__)) extern __attribute__((__nothrow__)) __attribu
 
 
 extern __attribute__((__nothrow__)) unsigned int __fp_status(unsigned int , unsigned int );
-# 705 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 705 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) int mblen(const char * , size_t );
-# 720 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 720 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) int mbtowc(wchar_t * __restrict ,
                    const char * __restrict , size_t );
-# 739 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 739 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) int wctomb(char * , wchar_t );
-# 761 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 761 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) size_t mbstowcs(wchar_t * __restrict ,
                       const char * __restrict , size_t ) __attribute__((__nonnull__(2)));
-# 779 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 779 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) size_t wcstombs(char * __restrict ,
                       const wchar_t * __restrict , size_t ) __attribute__((__nonnull__(2)));
-# 798 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
+# 798 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdlib.h" 3
 extern __attribute__((__nothrow__)) void __use_realtime_heap(void);
 extern __attribute__((__nothrow__)) void __use_realtime_division(void);
 extern __attribute__((__nothrow__)) void __use_two_region_memory(void);
@@ -746,8 +746,8 @@ IRQn_Type;
 
 
 
-# 1 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 1 3
-# 56 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 3
+# 1 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 1 3
+# 56 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 3
 typedef signed char int8_t;
 typedef signed short int int16_t;
 typedef signed int int32_t;
@@ -810,15 +810,15 @@ typedef unsigned long long uintmax_t;
 # 41 "./Library/CMSIS/Include\\cmsis_compiler.h" 3
 # 1 "./Library/CMSIS/Include\\cmsis_armclang.h" 1 3
 # 31 "./Library/CMSIS/Include\\cmsis_armclang.h" 3
-# 1 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 1 3
+# 1 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 1 3
 
 
 
 
 
 
-# 1 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_acle.h" 1 3
-# 45 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_acle.h" 3
+# 1 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_acle.h" 1 3
+# 45 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_acle.h" 3
 static __inline__ void __attribute__((__always_inline__, __nodebug__)) __wfi(void) {
   __builtin_arm_wfi();
 }
@@ -861,7 +861,7 @@ __swp(uint32_t __x, volatile uint32_t *__p) {
   while (__builtin_arm_strex(__x, __p));
   return v;
 }
-# 113 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_acle.h" 3
+# 113 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_acle.h" 3
 static __inline__ void __attribute__((__always_inline__, __nodebug__)) __nop(void) {
   __builtin_arm_nop();
 }
@@ -1033,7 +1033,7 @@ static __inline__ int32_t __attribute__((__always_inline__,__nodebug__))
 __smulwt(int32_t __a, int32_t __b) {
   return __builtin_arm_smulwt(__a, __b);
 }
-# 300 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_acle.h" 3
+# 300 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_acle.h" 3
 static __inline__ int32_t __attribute__((__always_inline__, __nodebug__))
 __qadd(int32_t __t, int32_t __v) {
   return __builtin_arm_qadd(__t, __v);
@@ -1076,7 +1076,7 @@ static __inline__ int32_t __attribute__((__always_inline__, __nodebug__))
 __smlawt(int32_t __a, int32_t __b, int32_t __c) {
   return __builtin_arm_smlawt(__a, __b, __c);
 }
-# 353 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_acle.h" 3
+# 353 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_acle.h" 3
 typedef int32_t int8x4_t;
 typedef int32_t int16x2_t;
 typedef uint32_t uint8x4_t;
@@ -1322,8 +1322,8 @@ static __inline__ int32_t __attribute__((__always_inline__, __nodebug__))
 __smusdx(int16x2_t __a, int16x2_t __b) {
   return __builtin_arm_smusdx(__a, __b);
 }
-# 8 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 2 3
-# 39 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 3
+# 8 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 2 3
+# 39 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 3
       // 7 != 6) && !__ARM_ARCH_8M_BASE__
 static __inline__ unsigned int __attribute__((__always_inline__, __nodebug__))
 __disable_fiq(void) {
@@ -1333,7 +1333,7 @@ __disable_fiq(void) {
                        "cpsid f\n"
                        : [cpsr] "=r"(cpsr));
   return cpsr & 0x1;
-# 62 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 3
+# 62 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 3
 }
 
 
@@ -1346,7 +1346,7 @@ __disable_irq(void) {
                        "cpsid i\n"
                        : [cpsr] "=r"(cpsr));
   return cpsr & 0x1;
-# 89 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 3
+# 89 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 3
 }
 
 
@@ -1359,7 +1359,7 @@ static __inline__ void __attribute__((__always_inline__, __nodebug__))
 __enable_fiq(void) {
 
   __asm__ __volatile__("cpsie f");
-# 109 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 3
+# 109 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 3
 }
 
 
@@ -1367,7 +1367,7 @@ static __inline__ void __attribute__((__always_inline__, __nodebug__))
 __enable_irq(void) {
 
   __asm__ __volatile__("cpsie i");
-# 124 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 3
+# 124 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 3
 }
 
 static __inline__ void __attribute__((__always_inline__, __nodebug__)) __force_stores(void) {
@@ -1390,7 +1390,7 @@ __semihost(int val, const void *ptr) {
 
 
       "bkpt 0xab"
-# 160 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 3
+# 160 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\arm_compat.h" 3
       : "+r"(v), "+r"(p)
       :
       : "memory", "cc");
@@ -6130,15 +6130,14 @@ void HSUSBD_SetVendorRequest(HSUSBD_VENDOR_REQ pfnVendorReq);
 # 13 "../EBI_LCD_Module.c" 2
 
 # 1 "..\\EBI_LCD_Module.h" 1
-# 28 "..\\EBI_LCD_Module.h"
-// Characters
+# 29 "..\\EBI_LCD_Module.h"
 extern uint8_t Font8x16[];
 extern uint16_t Font16x32[];
-extern uint8_t minutes; // minutes counter
-extern uint8_t seconds; // seconds counter
-extern uint8_t timer_running; // 0 = paused (splash/Game Over), 1 = play clock
+extern uint8_t minutes;
+extern uint8_t seconds;
+extern uint8_t timer_running;
 
-// Sub-functions
+
 void ILI9341_Initial(void);
 void Timer3_Init(void);
 void LCD_WR_REG(uint16_t cmd);
@@ -6165,20 +6164,19 @@ static volatile uint8_t _td_active = 0;
 static volatile uint8_t _td_ticks = 0;
 static volatile uint8_t _td_target = 0;
 static volatile uint16_t _td_timeout = 0;
-uint8_t minutes = 0; // minutes counter
-uint8_t seconds = 0; // seconds counter
-uint8_t timer_running = 0; // start ?off?
+uint8_t minutes = 0;
+uint8_t seconds = 0;
+uint8_t timer_running = 0;
 static uint8_t _game_ms_count = 0;
-# 63 "../EBI_LCD_Module.c"
+# 52 "../EBI_LCD_Module.c"
 void Timer3_Init(void)
 {
 
     CLK_EnableModuleClock(((1UL<<30)|(1UL<<28) |(0x7UL<<25) |(20UL<<20) |(0x0UL<<18)|(0x0UL<<10)|(0x0UL<<5)|(5UL<<0)));
-  CLK_SetModuleClock(((1UL<<30)|(1UL<<28) |(0x7UL<<25) |(20UL<<20) |(0x0UL<<18)|(0x0UL<<10)|(0x0UL<<5)|(5UL<<0)), (0x2UL << (20)), 0x0UL);
+ CLK_SetModuleClock(((1UL<<30)|(1UL<<28) |(0x7UL<<25) |(20UL<<20) |(0x0UL<<18)|(0x0UL<<10)|(0x0UL<<5)|(5UL<<0)), (0x2UL << (20)), 0x0UL);
 
 
-    //((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x11100UL))->CMP = 1199999;
-  ((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x11100UL))->CMP = 9599999;
+ ((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x11100UL))->CMP = 9599999;
 
 
     ((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x11100UL))->CTL = (0x1ul << (29)) | (1UL << (27));
@@ -6196,19 +6194,18 @@ void Timer3_Init(void)
 
     printf("Timer3 CMP: %d, CTL: 0x%08X\n", ((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x11100UL))->CMP, ((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x11100UL))->CTL);
 }
-
-
+# 87 "../EBI_LCD_Module.c"
 void TMR3_IRQHandler(void)
 {
-  ((GPIO_T *) (((uint32_t)0x40000000) + 0x040C0UL))->DOUT ^= (1 << 10);
+ ((GPIO_T *) (((uint32_t)0x40000000) + 0x040C0UL))->DOUT ^= (1 << 10);
     TIMER_ClearIntFlag(((TIMER_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x11100UL)));
     Timer3_flag = 1;
     Timer3_cnt++;
 
-    // only accumulate real play-time when timer_running==1
+
     if (timer_running)
     {
-        if (++_game_ms_count >= 10) // 10?100ms = 1s
+        if (++_game_ms_count >= 10)
         {
             _game_ms_count = 0;
             if (++seconds >= 60)
@@ -6218,10 +6215,6 @@ void TMR3_IRQHandler(void)
             }
         }
     }
-
-
-
-    // ?your existing TimerDelay logic?
 }
 
 
@@ -6258,29 +6251,22 @@ uint8_t TimerDelay_Done(void)
         return 1;
     }
 
-
     return 0;
 }
-# 164 "../EBI_LCD_Module.c"
+# 155 "../EBI_LCD_Module.c"
 void LCD_WR_REG(uint16_t cmd)
 {
     (*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(7))) + ((3)<<2)))) = 0;
     (*((volatile unsigned short *)(0x60000000UL +(0x00000000))) = (cmd));
     (*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(7))) + ((3)<<2)))) = 1;
 }
-# 186 "../EBI_LCD_Module.c"
+# 177 "../EBI_LCD_Module.c"
 void LCD_WR_DATA(uint16_t dat)
 {
     (*((volatile unsigned short *)(0x60000000UL +(0x00030000))) = (dat));
 
 }
-# 201 "../EBI_LCD_Module.c"
-uint16_t LCD_RD_DATA(void)
-{
-    return (*((volatile unsigned short *)(0x60000000UL +(0x00030000))));
-
-}
-# 218 "../EBI_LCD_Module.c"
+# 194 "../EBI_LCD_Module.c"
 void LCD_SetWindow(uint16_t x_s, uint16_t x_e, uint16_t y_s, uint16_t y_e)
 {
 
@@ -6301,18 +6287,18 @@ void LCD_SetWindow(uint16_t x_s, uint16_t x_e, uint16_t y_s, uint16_t y_e)
     LCD_WR_REG(0x2C);
 
 }
-# 248 "../EBI_LCD_Module.c"
+# 224 "../EBI_LCD_Module.c"
 void ILI9341_Initial(void)
 {
 
     (*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(1))) + ((6)<<2)))) = 1;;
-    CLK_SysTickDelay(5000); // Delay 5ms
+    CLK_SysTickDelay(5000);
 
     (*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(1))) + ((6)<<2)))) = 0;;
-    CLK_SysTickDelay(20000); // Delay 20ms
+    CLK_SysTickDelay(20000);
 
     (*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(1))) + ((6)<<2)))) = 1;;
-    CLK_SysTickDelay(40000); // Delay 40ms
+    CLK_SysTickDelay(40000);
 
 
     LCD_WR_REG(0xCB);
@@ -6421,7 +6407,7 @@ void ILI9341_Initial(void)
     printf("Initial ILI9341 LCD Module done.\n\n");
 
 }
-# 380 "../EBI_LCD_Module.c"
+# 356 "../EBI_LCD_Module.c"
 void LCD_PutChar8x16(uint16_t x, uint16_t y, uint8_t c, uint32_t fColor, uint32_t bColor)
 {
     uint32_t i, j;
@@ -6441,7 +6427,7 @@ void LCD_PutChar8x16(uint16_t x, uint16_t y, uint8_t c, uint32_t fColor, uint32_
     }
 
 }
-# 412 "../EBI_LCD_Module.c"
+# 388 "../EBI_LCD_Module.c"
 void LCD_PutString(uint16_t x, uint16_t y, uint8_t *s, uint32_t fColor, uint32_t bColor)
 {
     uint8_t l = 0;
@@ -6455,27 +6441,7 @@ void LCD_PutString(uint16_t x, uint16_t y, uint8_t *s, uint32_t fColor, uint32_t
     }
 
 }
-# 438 "../EBI_LCD_Module.c"
-void LCD_PutChar16x32(uint16_t x, uint16_t y, uint16_t c, uint32_t fColor, uint32_t bColor)
-{
-    uint32_t i, j;
-    uint16_t m;
-
-    for(i=0; i<32; i++) {
-        m = Font16x32[c*32+i];
-        LCD_SetWindow(x, x+15, y+i, y+i);
-        for(j=0; j<16; j++) {
-            if((m & 0x8000) == 0x8000) {
-                LCD_WR_DATA(fColor);
-            } else {
-                LCD_WR_DATA(bColor);
-            }
-            m <<= 1;
-        }
-    }
-
-}
-# 470 "../EBI_LCD_Module.c"
+# 415 "../EBI_LCD_Module.c"
 void LCD_BlankArea(uint16_t X, uint16_t Y, uint16_t W, uint16_t H, uint16_t color)
 {
     uint16_t i, j;
@@ -6485,110 +6451,5 @@ void LCD_BlankArea(uint16_t X, uint16_t Y, uint16_t W, uint16_t H, uint16_t colo
         for(i=0; i<W; i++)
             LCD_WR_DATA(color);
     }
-
-}
-# 491 "../EBI_LCD_Module.c"
-uint16_t Get_TP_X(void)
-{
-    uint16_t x_adc_in;
-    uint16_t X_pos;
-
-
-    (*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(1))) + ((9)<<2)))) = 1;
-    (*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(7))) + ((4)<<2)))) = 0;
-    GPIO_SetMode(((GPIO_T *) (((uint32_t)0x40000000) + 0x04040UL)), (0x00000200UL) ///< Bit 9 mask of an 32 bit integer, 0x1UL); // XR
-    GPIO_SetMode(((GPIO_T *) (((uint32_t)0x40000000) + 0x041C0UL)), (0x00000010UL) ///< Bit 4 mask of an 32 bit integer, 0x1UL); // XL
-    GPIO_SetMode(((GPIO_T *) (((uint32_t)0x40000000) + 0x041C0UL)), (0x00000020UL) ///< Bit 5 mask of an 32 bit integer, 0x0UL); // YD
-
-
-    ((SYS_T *) (((uint32_t)0x40000000) + 0x00000UL))->GPB_MFPH &= ~((0xful << (0)) | (0xful << (4)));
-    ((SYS_T *) (((uint32_t)0x40000000) + 0x00000UL))->GPB_MFPH |= (0x01UL<<(0));
-
-
-    ((((GPIO_T *) (((uint32_t)0x40000000) + 0x04040UL)))->DINOFF |= (((0x00000100UL) ///< Bit 8 mask of an 32 bit integer)<<16));
-
-
-    EADC_ConfigSampleModule(((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)), 1, (0UL<<(16)), 8); // YU
-
-
-    ((((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)))->STATUS2 = ((0x1ul << (1))));
-
-
-    ((((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)))->CTL |= (((0x00000002UL) ///< Bit 1 mask of an 32 bit integer) << (2))); //Enable sample module A/D ADINT1 interrupt.
-    ((((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)))->INTSRC[(1)] |= ((0x00000002UL) ///< Bit 1 mask of an 32 bit integer)); //Enable sample module 1 interrupt.
-    __NVIC_EnableIRQ(EADC01_IRQn);
-
-
-    g_u32AdcIntFlag_TP = 0;
-    ((((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)))->SWTRG = ((0x00000002UL) ///< Bit 1 mask of an 32 bit integer));
-
-
-    while(g_u32AdcIntFlag_TP == 0) {};
-    x_adc_in = ((((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)))->DAT[(1)] & (0xfffful << (0)))>>2;
-
-
-    X_pos = (x_adc_in - 170)/2.8; // range of x_adc_in is [0:842]
-
-    if(X_pos >= (240 // LCD Width at pixels - 1)) X_pos = 240 // LCD Width at pixels - 1;
-
-    printf("Position X: %d\n", X_pos);
-    return X_pos;
-
-}
-# 548 "../EBI_LCD_Module.c"
-uint16_t Get_TP_Y(void)
-{
-    uint16_t y_adc_in;
-    uint16_t Y_pos;
-
-
-    (*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(1))) + ((8)<<2)))) = 1;
-    (*((volatile uint32_t *)(((((uint32_t)0x40000000) + 0x04800UL)+(0x40*(7))) + ((5)<<2)))) = 0;
-    GPIO_SetMode(((GPIO_T *) (((uint32_t)0x40000000) + 0x04040UL)), (0x00000100UL) ///< Bit 8 mask of an 32 bit integer, 0x1UL); // YU
-    GPIO_SetMode(((GPIO_T *) (((uint32_t)0x40000000) + 0x041C0UL)), (0x00000020UL) ///< Bit 5 mask of an 32 bit integer, 0x1UL); // YD
-    GPIO_SetMode(((GPIO_T *) (((uint32_t)0x40000000) + 0x041C0UL)), (0x00000010UL) ///< Bit 4 mask of an 32 bit integer, 0x0UL); // XL
-
-
-    ((SYS_T *) (((uint32_t)0x40000000) + 0x00000UL))->GPB_MFPH &= ~((0xful << (0)) | (0xful << (4)));
-    ((SYS_T *) (((uint32_t)0x40000000) + 0x00000UL))->GPB_MFPH |= (0x01UL<<(4));
-
-
-    ((((GPIO_T *) (((uint32_t)0x40000000) + 0x04040UL)))->DINOFF |= (((0x00000200UL) ///< Bit 9 mask of an 32 bit integer)<<16));
-
-
-    EADC_ConfigSampleModule(((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)), 2, (0UL<<(16)), 9); // XR
-
-
-    ((((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)))->STATUS2 = ((0x1ul << (1))));
-
-
-    ((((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)))->CTL |= (((0x00000004UL) ///< Bit 2 mask of an 32 bit integer) << (2))); //Enable sample module A/D ADINT1 interrupt.
-    ((((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)))->INTSRC[(1)] |= ((0x00000004UL) ///< Bit 2 mask of an 32 bit integer)); //Enable sample module 2 interrupt.
-    __NVIC_EnableIRQ(EADC02_IRQn);
-
-
-    g_u32AdcIntFlag_TP = 0;
-    ((((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)))->SWTRG = ((0x00000004UL) ///< Bit 2 mask of an 32 bit integer));
-
-
-    while(g_u32AdcIntFlag_TP == 0) {};
-    y_adc_in = ((((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)))->DAT[(2)] & (0xfffful << (0)))>>2;
-
-
-   Y_pos = (y_adc_in - 150)/2.34; // range of y_adc_in is [0:898.8]
-
-    if(Y_pos >= (320 // LCD Hight at pixels - 1)) Y_pos = 320 // LCD Hight at pixels - 1;
-
-    printf("Position Y : %d \n", Y_pos);
-    return Y_pos;
-
-}
-# 605 "../EBI_LCD_Module.c"
-void EADC01_IRQHandler(void)
-{
-
-    ((((EADC_T *) ((((uint32_t)0x40000000) + (uint32_t)0x00040000) + 0x03000UL)))->STATUS2 = ((0x1ul << (1))));
-
-    g_u32AdcIntFlag_TP = 1;
 
 }

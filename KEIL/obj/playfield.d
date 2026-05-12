@@ -1,2 +1,2 @@
-./obj/playfield.o: playfield.c playfield.h spawn_block.h game_draw.h \
-  tetris_draw.h
+./obj/playfield.o: playfield.c playfield.h tetromino_spawn.h \
+  game_screens.h tetris_draw.h

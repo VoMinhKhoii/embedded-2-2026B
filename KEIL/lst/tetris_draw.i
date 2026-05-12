@@ -13,10 +13,10 @@
 
 
 
-// height of the 8×16 “NEXT” label
+// height of the 8?16 ?NEXT? label
 
-# 1 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 1 3
-# 56 "C:\\Users\\Admin\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 3
+# 1 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 1 3
+# 56 "C:\\Users\\Tam Tran\\AppData\\Local\\Keil_v5\\ARM\\ARMCLANG\\bin\\..\\include\\stdint.h" 3
 typedef signed char int8_t;
 typedef signed short int int16_t;
 typedef signed int int32_t;
@@ -70,7 +70,7 @@ typedef unsigned int uintptr_t;
 typedef signed long long intmax_t;
 typedef unsigned long long uintmax_t;
 # 21 ".\\tetris_draw.h" 2
-# 1 ".\\spawn_block.h" 1
+# 1 ".\\tetromino_spawn.h" 1
 
 
 
@@ -87,9 +87,9 @@ typedef enum {
     TETROMINO_COUNT
 } TetrominoType;
 
-void InitSpawn(void);
-// Function to spawn a new tetromino
-TetrominoType SpawnTetromino(uint16_t *originX, uint16_t *originY);
+void InitializeTetrominoQueue(void);
+
+TetrominoType SpawnQueuedTetromino(uint16_t *originX, uint16_t *originY);
 # 22 ".\\tetris_draw.h" 2
 static const int8_t tetro[7][4][4][2] = {
     // I
@@ -135,15 +135,14 @@ void DrawNextTetromino(TetrominoType t);
 void DrawBlock(uint16_t x, uint16_t y, TetrominoType type);
 # 3 "tetris_draw.c" 2
 # 1 "../../task2-complete\\EBI_LCD_Module.h" 1
-# 28 "../../task2-complete\\EBI_LCD_Module.h"
-// Characters
+# 29 "../../task2-complete\\EBI_LCD_Module.h"
 extern uint8_t Font8x16[];
 extern uint16_t Font16x32[];
-extern uint8_t minutes; // minutes counter
-extern uint8_t seconds; // seconds counter
-extern uint8_t timer_running; // 0 = paused (splash/Game Over), 1 = play clock
+extern uint8_t minutes;
+extern uint8_t seconds;
+extern uint8_t timer_running;
 
-// Sub-functions
+
 void ILI9341_Initial(void);
 void Timer3_Init(void);
 void LCD_WR_REG(uint16_t cmd);
@@ -158,6 +157,25 @@ uint16_t Get_TP_Y(void);
 void TimerDelay_Start(uint8_t ticks);
 uint8_t TimerDelay_Done(void);
 # 4 "tetris_draw.c" 2
+# 1 ".\\game_screens.h" 1
+# 15 ".\\game_screens.h"
+extern uint16_t currentScore;
+extern uint8_t level;
+extern uint8_t minutes;
+extern uint8_t seconds;
+extern char acString[32];
+extern uint16_t currentHighScore;
+void DrawScreenBorder(uint16_t x, uint16_t y, uint16_t w, uint16_t h);
+void DrawGameplayScreen(void);
+void DrawStartScreen(void);
+void DrawGameOverScreen(void);
+void DrawLeaderboardScreen(void);
+
+void RecordLeaderboardEntry(uint16_t score,
+                            uint8_t level,
+                            uint8_t minutes,
+                            uint8_t seconds);
+# 5 "tetris_draw.c" 2
 # 1 ".\\playfield.h" 1
 # 11 ".\\playfield.h"
 extern uint8_t playfield[14][30];
@@ -165,14 +183,16 @@ static uint16_t locked_count = 0;
 
 
 typedef struct {
-    uint8_t col; // column index (0 to 14 -1)
-    uint8_t row; // row index (0 to 30 -1)
-    TetrominoType type; // block type/color
+    uint8_t col;
+    uint8_t row;
+    TetrominoType type;
 } LockedBlock;
 static LockedBlock locked_blocks[400];
 static int locked_block_count = 0;
 void ClearPlayfield(void);
 void RedrawPlayfield(void);
+void DrawPlayfieldBackground(void);
+void DrawPlayfieldCellBackground(uint16_t x, uint16_t y);
 uint8_t CanPlaceTetromino(TetrominoType t,
                           uint16_t x, uint16_t y, uint8_t rot);
 uint8_t CanMoveDown(TetrominoType t,
@@ -188,7 +208,7 @@ int ClearFullLines(void);
 
 void LockTetromino(TetrominoType t,
                    uint16_t x, uint16_t y, uint8_t rot);
-# 5 "tetris_draw.c" 2
+# 6 "tetris_draw.c" 2
 
 
 
@@ -199,7 +219,7 @@ static const uint16_t colorOf[7] = {
     0xF800
 };
 
-// dx,dy offsets for each piece (I=0…Z=6), each rotation 0–3, each of 4 blocks
+// dx,dy offsets for each piece (I=0?Z=6), each rotation 0?3, each of 4 blocks
 
 void DrawTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
 {
@@ -228,17 +248,17 @@ void ClearTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
         dy = tetro[t][rot][i][1];
         px = x + dx * 10;
         py = y + dy * 10;
-        LCD_BlankArea(px, py, 10, 10, 0x0000);
+        DrawPlayfieldCellBackground(px, py);
     }
 }
 
 void DrawNextTetromino(TetrominoType t)
 {
-    // carve out exactly the interior under “NEXT” but inside the 10px stone border
+    // carve out exactly the interior under ?NEXT? but inside the 10px stone border
     const int16_t innerX = 150 + 10;
-    const int16_t innerY = 0 + 10 + 16;
+    const int16_t innerY = 0 + 16 + 5;
     const int16_t innerW = 90 - 2*10;
-    const int16_t innerH = 100 - 16 - 2*10;
+    const int16_t innerH = 60 - 16 - 2*10;
 
     // 1) clear only that region
     LCD_BlankArea(
@@ -246,7 +266,7 @@ void DrawNextTetromino(TetrominoType t)
         innerY,
         innerW,
         innerH,
-        0x0000
+        0x963F
     );
 
     // 2) compute the spawn-rotation (rot=0) bounds of this tetromino
@@ -280,6 +300,9 @@ void DrawNextTetromino(TetrominoType t)
         // 3) draw the next piece (rotation=0)
         DrawTetromino(t, drawX, drawY, 0);
     }
+
+
+    LCD_PutString(179, 10, (uint8_t *)"NEXT", 0x0000, 0x963F);
 }
 void DrawBlock(uint16_t x, uint16_t y, TetrominoType type)
 {

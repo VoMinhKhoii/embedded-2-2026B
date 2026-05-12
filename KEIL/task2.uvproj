@@ -474,16 +474,6 @@
               <FilePath>.\sys_init.c</FilePath>
             </File>
             <File>
-              <FileName>game_screens.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\game_screens.h</FilePath>
-            </File>
-            <File>
-              <FileName>game_screens.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\game_screens.c</FilePath>
-            </File>
-            <File>
               <FileName>tetris_draw.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\tetris_draw.h</FilePath>
@@ -492,6 +482,36 @@
               <FileName>tetris_draw.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\tetris_draw.c</FilePath>
+            </File>
+            <File>
+              <FileName>playfield.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\playfield.c</FilePath>
+            </File>
+            <File>
+              <FileName>playfield.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\playfield.h</FilePath>
+            </File>
+            <File>
+              <FileName>game_session.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\game_session.c</FilePath>
+            </File>
+            <File>
+              <FileName>game_session.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\game_session.h</FilePath>
+            </File>
+            <File>
+              <FileName>game_screens.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\game_screens.c</FilePath>
+            </File>
+            <File>
+              <FileName>game_screens.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\game_screens.h</FilePath>
             </File>
             <File>
               <FileName>tetromino_spawn.c</FileName>
@@ -514,24 +534,19 @@
               <FilePath>.\tetromino_rotation.h</FilePath>
             </File>
             <File>
-              <FileName>playfield.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\playfield.c</FilePath>
-            </File>
-            <File>
-              <FileName>playfield.h</FileName>
+              <FileName>start_skyline_rgb565.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\playfield.h</FilePath>
+              <FilePath>.\start_skyline_rgb565.h</FilePath>
             </File>
             <File>
-              <FileName>game_session.h</FileName>
+              <FileName>start_logo_rgb565.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\game_session.h</FilePath>
+              <FilePath>.\start_logo_rgb565.h</FilePath>
             </File>
             <File>
-              <FileName>game_session.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\game_session.c</FilePath>
+              <FileName>game_over_bitmap.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\game_over_bitmap.h</FilePath>
             </File>
           </Files>
         </Group>

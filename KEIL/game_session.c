@@ -118,8 +118,8 @@ static void ResetGameStats(GameSession *session)
 static void ResetPlayfieldAndPreview(GameSession *session)
 {
     /* Redraw the board and prepare the next-piece preview. */
-    ClearPlayfield();
     DrawGameplayScreen();
+    ClearPlayfield();
     InitializeTetrominoQueue();
     ScheduleSpawnDelay(session);
 }
