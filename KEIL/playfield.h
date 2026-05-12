@@ -9,16 +9,6 @@
 #define PLAYFIELD_COLS 14
 #define PLAYFIELD_ROWS 30
 extern uint8_t playfield[PLAYFIELD_COLS][PLAYFIELD_ROWS];
-static uint16_t locked_count = 0;
-#define MAX_LOCKED_BLOCKS 400
-
-typedef struct {
-    uint8_t col;
-    uint8_t row;
-    TetrominoType type;
-} LockedBlock;
-static LockedBlock locked_blocks[MAX_LOCKED_BLOCKS];
-static int locked_block_count = 0;
 void ClearPlayfield(void);
 void RedrawPlayfield(void);
 void DrawPlayfieldBackground(void);

@@ -1,11 +1,92 @@
 #include "playfield.h"
+#include "EBI_LCD_Module.h"
 #include "game_screens.h"
 #include "tetris_draw.h"
+#define MAX_LOCKED_BLOCKS 400
+
+typedef struct {
+    uint8_t col;
+    uint8_t row;
+    TetrominoType type;
+} LockedBlock;
+
 uint8_t playfield[PLAYFIELD_COLS][PLAYFIELD_ROWS];
+static LockedBlock locked_blocks[MAX_LOCKED_BLOCKS];
+static int locked_block_count = 0;
 
 static uint16_t GetPlayfieldCellColor(int col, int row)
 {
     return ((col + row) & 1) ? PLAYFIELD_ALT_BG_COLOR : UI_BG_COLOR;
+}
+
+static int16_t PixelToPlayfieldCol(uint16_t x)
+{
+    return ((int16_t)x - PLAYFIELD_LEFT) / STONE_BLOCK;
+}
+
+static int16_t PixelToPlayfieldRow(uint16_t y)
+{
+    return ((int16_t)y - PLAYFIELD_TOP) / STONE_BLOCK;
+}
+
+static uint16_t PlayfieldCellX(int16_t col)
+{
+    return PLAYFIELD_LEFT + col * STONE_BLOCK;
+}
+
+static uint16_t PlayfieldCellY(int16_t row)
+{
+    return PLAYFIELD_TOP + row * STONE_BLOCK;
+}
+
+static uint8_t IsRowFull(int row)
+{
+    int col;
+
+    for (col = 0; col < PLAYFIELD_COLS; col++) {
+        if (playfield[col][row] == 0) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+static void ShiftPlayfieldRowsDownFrom(int row)
+{
+    int r, c;
+
+    for (r = row; r > 0; r--) {
+        for (c = 0; c < PLAYFIELD_COLS; c++) {
+            playfield[c][r] = playfield[c][r - 1];
+        }
+    }
+
+    for (c = 0; c < PLAYFIELD_COLS; c++) {
+        playfield[c][0] = 0;
+    }
+}
+
+static void RemoveLockedBlockAt(int index)
+{
+    locked_blocks[index] = locked_blocks[locked_block_count - 1];
+    locked_block_count--;
+}
+
+static void ShiftLockedBlocksAfterRowClear(int row)
+{
+    int i = 0;
+
+    while (i < locked_block_count) {
+        if (locked_blocks[i].row == row) {
+            RemoveLockedBlockAt(i);
+        } else {
+            if (locked_blocks[i].row < row) {
+                locked_blocks[i].row++;
+            }
+            i++;
+        }
+    }
 }
 
 void DrawPlayfieldBackground(void)
@@ -14,8 +95,8 @@ void DrawPlayfieldBackground(void)
 
     for (c = 0; c < PLAYFIELD_COLS; c++) {
         for (r = 0; r < PLAYFIELD_ROWS; r++) {
-            LCD_BlankArea(PLAYFIELD_LEFT + c * STONE_BLOCK,
-                          PLAYFIELD_TOP + r * STONE_BLOCK,
+            LCD_BlankArea(PlayfieldCellX(c),
+                          PlayfieldCellY(r),
                           STONE_BLOCK,
                           STONE_BLOCK,
                           GetPlayfieldCellColor(c, r));
@@ -25,8 +106,8 @@ void DrawPlayfieldBackground(void)
 
 void DrawPlayfieldCellBackground(uint16_t x, uint16_t y)
 {
-    int col = ((int)x - PLAYFIELD_LEFT) / STONE_BLOCK;
-    int row = ((int)y - PLAYFIELD_TOP) / STONE_BLOCK;
+    int col = PixelToPlayfieldCol(x);
+    int row = PixelToPlayfieldRow(y);
 
     if (col < 0 || col >= PLAYFIELD_COLS || row < 0 || row >= PLAYFIELD_ROWS) {
         return;
@@ -59,16 +140,16 @@ void RedrawPlayfield(void)
     {
         LockedBlock *lb = &locked_blocks[i];
         DrawBlock(
-          PLAYFIELD_LEFT + lb->col * STONE_BLOCK,
-          PLAYFIELD_TOP  + lb->row * STONE_BLOCK,
+          PlayfieldCellX(lb->col),
+          PlayfieldCellY(lb->row),
           lb->type
         );
     }
 }
 uint8_t CanPlaceTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
 {
-    int16_t col = ((int16_t)x - PLAYFIELD_LEFT) / STONE_BLOCK;
-    int16_t row = ((int16_t)y - PLAYFIELD_TOP ) / STONE_BLOCK;
+    int16_t col = PixelToPlayfieldCol(x);
+    int16_t row = PixelToPlayfieldRow(y);
     int i;
     int8_t dx, dy;
     int16_t c, r;
@@ -97,8 +178,8 @@ uint8_t CanPlaceTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
 
 void LockTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
 {
-    int16_t base_col = (x - PLAYFIELD_LEFT) / STONE_BLOCK;
-    int16_t base_row = (y - PLAYFIELD_TOP) / STONE_BLOCK;
+    int16_t base_col = PixelToPlayfieldCol(x);
+    int16_t base_row = PixelToPlayfieldRow(y);
     int i;
 
     for (i = 0; i < 4; i++) {
@@ -122,17 +203,17 @@ void LockTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
 
 uint8_t CanMoveDown(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
 {
-    return CanPlaceTetromino(t, x, y + 10, rot);
+    return CanPlaceTetromino(t, x, y + STONE_BLOCK, rot);
 }
 
 uint8_t CanMoveLeft(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
 {
-    return CanPlaceTetromino(t, x - 10, y, rot);
+    return CanPlaceTetromino(t, x - STONE_BLOCK, y, rot);
 }
 
 uint8_t CanMoveRight(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
 {
-    return CanPlaceTetromino(t, x + 10, y, rot);
+    return CanPlaceTetromino(t, x + STONE_BLOCK, y, rot);
 }
 
 uint8_t CanRotate(TetrominoType t, uint16_t x, uint16_t y, uint8_t new_rot)
@@ -143,50 +224,15 @@ uint8_t CanRotate(TetrominoType t, uint16_t x, uint16_t y, uint8_t new_rot)
 int ClearFullLines(void)
 {
     int cleared_lines = 0;
-    int row, col, r, c, i, full_line;
+    int row;
 
     /* Scan from the bottom upward so shifted rows are rechecked correctly. */
     for (row = PLAYFIELD_ROWS - 1; row >= 0; row--)
     {
-        full_line = 1;
-        for (col = 0; col < PLAYFIELD_COLS; col++)
+        if (IsRowFull(row))
         {
-            if (playfield[col][row] == 0)
-            {
-                full_line = 0;
-                break;
-            }
-        }
-
-        if (full_line)
-        {
-            for (r = row; r > 0; r--)
-            {
-                for (c = 0; c < PLAYFIELD_COLS; c++)
-                {
-                    playfield[c][r] = playfield[c][r - 1];
-                }
-            }
-            for (c = 0; c < PLAYFIELD_COLS; c++)
-                playfield[c][0] = 0;
-
-            /* Mirror the logical row shift in the locked-block list. */
-            i = 0;
-            while (i < locked_block_count)
-            {
-                if (locked_blocks[i].row == row)
-                {
-                    locked_blocks[i] = locked_blocks[locked_block_count - 1];
-                    locked_block_count--;
-                }
-                else
-                {
-                    if (locked_blocks[i].row < row)
-                        locked_blocks[i].row++;
-                    i++;
-                }
-            }
-
+            ShiftPlayfieldRowsDownFrom(row);
+            ShiftLockedBlocksAfterRowClear(row);
             cleared_lines++;
             row++;
         }
