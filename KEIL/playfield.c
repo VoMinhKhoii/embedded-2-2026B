@@ -2,7 +2,17 @@
 #include "EBI_LCD_Module.h"
 #include "game_screens.h"
 #include "tetris_draw.h"
+#define MAX_LOCKED_BLOCKS 400
+
+typedef struct {
+    uint8_t col;
+    uint8_t row;
+    TetrominoType type;
+} LockedBlock;
+
 uint8_t playfield[PLAYFIELD_COLS][PLAYFIELD_ROWS];
+static LockedBlock locked_blocks[MAX_LOCKED_BLOCKS];
+static int locked_block_count = 0;
 
 static uint16_t GetPlayfieldCellColor(int col, int row)
 {
@@ -27,6 +37,56 @@ static uint16_t PlayfieldCellX(int16_t col)
 static uint16_t PlayfieldCellY(int16_t row)
 {
     return PLAYFIELD_TOP + row * STONE_BLOCK;
+}
+
+static uint8_t IsRowFull(int row)
+{
+    int col;
+
+    for (col = 0; col < PLAYFIELD_COLS; col++) {
+        if (playfield[col][row] == 0) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+static void ShiftPlayfieldRowsDownFrom(int row)
+{
+    int r, c;
+
+    for (r = row; r > 0; r--) {
+        for (c = 0; c < PLAYFIELD_COLS; c++) {
+            playfield[c][r] = playfield[c][r - 1];
+        }
+    }
+
+    for (c = 0; c < PLAYFIELD_COLS; c++) {
+        playfield[c][0] = 0;
+    }
+}
+
+static void RemoveLockedBlockAt(int index)
+{
+    locked_blocks[index] = locked_blocks[locked_block_count - 1];
+    locked_block_count--;
+}
+
+static void ShiftLockedBlocksAfterRowClear(int row)
+{
+    int i = 0;
+
+    while (i < locked_block_count) {
+        if (locked_blocks[i].row == row) {
+            RemoveLockedBlockAt(i);
+        } else {
+            if (locked_blocks[i].row < row) {
+                locked_blocks[i].row++;
+            }
+            i++;
+        }
+    }
 }
 
 void DrawPlayfieldBackground(void)
@@ -164,50 +224,15 @@ uint8_t CanRotate(TetrominoType t, uint16_t x, uint16_t y, uint8_t new_rot)
 int ClearFullLines(void)
 {
     int cleared_lines = 0;
-    int row, col, r, c, i, full_line;
+    int row;
 
     /* Scan from the bottom upward so shifted rows are rechecked correctly. */
     for (row = PLAYFIELD_ROWS - 1; row >= 0; row--)
     {
-        full_line = 1;
-        for (col = 0; col < PLAYFIELD_COLS; col++)
+        if (IsRowFull(row))
         {
-            if (playfield[col][row] == 0)
-            {
-                full_line = 0;
-                break;
-            }
-        }
-
-        if (full_line)
-        {
-            for (r = row; r > 0; r--)
-            {
-                for (c = 0; c < PLAYFIELD_COLS; c++)
-                {
-                    playfield[c][r] = playfield[c][r - 1];
-                }
-            }
-            for (c = 0; c < PLAYFIELD_COLS; c++)
-                playfield[c][0] = 0;
-
-            /* Mirror the logical row shift in the locked-block list. */
-            i = 0;
-            while (i < locked_block_count)
-            {
-                if (locked_blocks[i].row == row)
-                {
-                    locked_blocks[i] = locked_blocks[locked_block_count - 1];
-                    locked_block_count--;
-                }
-                else
-                {
-                    if (locked_blocks[i].row < row)
-                        locked_blocks[i].row++;
-                    i++;
-                }
-            }
-
+            ShiftPlayfieldRowsDownFrom(row);
+            ShiftLockedBlocksAfterRowClear(row);
             cleared_lines++;
             row++;
         }
