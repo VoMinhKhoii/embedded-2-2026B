@@ -42,28 +42,36 @@ static void ScheduleSpawnDelay(GameSession *session)
     session->spawn_counter = 0;
 }
 
+static void ClearHudField(uint16_t x, uint16_t y, uint16_t w)
+{
+    LCD_BlankArea(x, y, w, 16, RIGHT_PANEL_BG_COLOR);
+}
+
 static void UpdateScoreDisplay(void)
 {
     char text[32];
 
+    ClearHudField(167, 120, 48);
     sprintf(text, "%d", currentScore);
-    LCD_PutString(176, 150, (uint8_t *)text, C_WHITE, C_BLACK);
+    LCD_PutString(167, 120, (uint8_t *)text, 0x01AF, RIGHT_PANEL_BG_COLOR);
 }
 
 static void UpdateLevelDisplay(void)
 {
     char text[32];
 
+    ClearHudField(167, 195, 48);
     sprintf(text, "%d", level);
-    LCD_PutString(176, 210, (uint8_t *)text, C_WHITE, C_BLACK);
+    LCD_PutString(167, 195, (uint8_t *)text, 0x01AF, RIGHT_PANEL_BG_COLOR);
 }
 
 static void UpdateTimerDisplay(void)
 {
     char text[32];
 
+    ClearHudField(167, 155, 56);
     sprintf(text, "%02d:%02d", minutes, seconds);
-    LCD_PutString(176, 180, (uint8_t *)text, C_WHITE, C_BLACK);
+    LCD_PutString(167, 155, (uint8_t *)text, 0x01AF, RIGHT_PANEL_BG_COLOR);
 }
 
 static void UpdateScoreAndLevel(int lines_cleared)
@@ -103,7 +111,8 @@ static void ResetGameStats(GameSession *session)
     UpdateScoreDisplay();
     UpdateLevelDisplay();
     UpdateTimerDisplay();
-    LCD_PutString(176, 260, (uint8_t *)"PAUSE ", C_WHITE, C_BLACK);
+    ClearHudField(167, 235, 56);
+    LCD_PutString(167, 235, (uint8_t *)"PAUSE ", 0x01AF, RIGHT_PANEL_BG_COLOR);
 }
 
 static void ResetPlayfieldAndPreview(GameSession *session)
@@ -147,10 +156,11 @@ static void TogglePause(GameSession *session)
     session->isPaused = !session->isPaused;
     timer_running = session->isPaused ? 0 : 1;
 
+    ClearHudField(167, 235, 56);
     if (session->isPaused) {
-        LCD_PutString(176, 260, (uint8_t *)"PAUSED", C_RED, C_BLACK);
+        LCD_PutString(167, 235, (uint8_t *)"PAUSED", C_RED, RIGHT_PANEL_BG_COLOR);
     } else {
-        LCD_PutString(176, 260, (uint8_t *)"PAUSE ", C_WHITE, C_BLACK);
+        LCD_PutString(167, 235, (uint8_t *)"PAUSE ", 0x01AF, RIGHT_PANEL_BG_COLOR);
     }
 }
 
@@ -366,7 +376,7 @@ void GameSession_ConfigureControls(void)
 void GameSession_Begin(GameSession *session)
 {
     /* Start from a clean board with a seeded next-piece queue. */
-    LCD_BlankArea(0, 0, LCD_W, LCD_H, C_BLACK);
+    LCD_BlankArea(0, 0, LCD_W, LCD_H, UI_BG_COLOR);
     DrawGameplayScreen();
 
     ResetGameStats(session);

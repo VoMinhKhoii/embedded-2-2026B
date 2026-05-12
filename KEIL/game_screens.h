@@ -4,9 +4,13 @@
 #include <stdint.h>
 #define STONE_BLOCK 10
 #define STONE_BLOCK 10
-#define C_STONE_A 0x7BEF
-#define C_STONE_B 0x6B4D
-#define C_BLACK   0x0000
+#define UI_BG_COLOR 0xAFB7
+#define RIGHT_PANEL_BG_COLOR 0x963F
+#define PLAYFIELD_ALT_BG_COLOR 0xA514
+#define STONE_COLOR 0x0000
+#define C_STONE_A 0x0000
+#define C_STONE_B 0x0000
+#define C_BLACK   0xAFB7
 #define C_WHITE   0xFFFF
 extern uint16_t currentScore;
 extern uint8_t level;

@@ -70,20 +70,20 @@ void DrawScreenBorder(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
 {
     uint16_t i, j, color;
     for (i = 0; i + STONE_BLOCK <= w; i += STONE_BLOCK) {
-        color = ((i / STONE_BLOCK) & 1) ? C_STONE_B : C_STONE_A;
-        LCD_BlankArea(x+i,y,STONE_BLOCK,STONE_BLOCK,color);
+        //color = ((i / STONE_BLOCK) & 1) ? C_STONE_B : C_STONE_A;
+        LCD_BlankArea(x+i,y,STONE_BLOCK,STONE_BLOCK,STONE_COLOR);
     }
     for (i = 0; i + STONE_BLOCK <= w; i += STONE_BLOCK) {
-        color = ((i / STONE_BLOCK) & 1) ? C_STONE_A : C_STONE_B;
-        LCD_BlankArea(x+i,y+h- STONE_BLOCK,STONE_BLOCK,STONE_BLOCK,color);
+        // color = ((i / STONE_BLOCK) & 1) ? C_STONE_A : C_STONE_B;
+        LCD_BlankArea(x+i,y+h- STONE_BLOCK,STONE_BLOCK,STONE_BLOCK,STONE_COLOR);
     }
     for (j = 0; j + STONE_BLOCK <= h; j += STONE_BLOCK) {
-        color = ((j / STONE_BLOCK) & 1) ? C_STONE_B : C_STONE_A;	
-        LCD_BlankArea(x,y+j,STONE_BLOCK,STONE_BLOCK,color);
+        // color = ((j / STONE_BLOCK) & 1) ? C_STONE_B : C_STONE_A;	
+        LCD_BlankArea(x,y+j,STONE_BLOCK,STONE_BLOCK,STONE_COLOR);
     }
     for (j = 0; j + STONE_BLOCK <= h; j += STONE_BLOCK) {
-        color = ((j / STONE_BLOCK) & 1) ? C_STONE_A : C_STONE_B;
-        LCD_BlankArea(x+w- STONE_BLOCK,y+j,STONE_BLOCK,STONE_BLOCK,color);
+        // color = ((j / STONE_BLOCK) & 1) ? C_STONE_A : C_STONE_B;
+        LCD_BlankArea(x+w- STONE_BLOCK,y+j,STONE_BLOCK,STONE_BLOCK,STONE_COLOR);
     }
 }
 
@@ -91,23 +91,24 @@ void DrawScreenBorder(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
 void DrawGameplayScreen(void)
 {
 	char hiString[10];
-    LCD_BlankArea(0,0,240,320,C_BLACK);
+    LCD_BlankArea(0,0,240,320,UI_BG_COLOR);
+    LCD_BlankArea(160,10,70,300,RIGHT_PANEL_BG_COLOR);
     DrawScreenBorder(0, 0, 240, 320);
     DrawScreenBorder(0, 0, 160, 320);
-    DrawScreenBorder(150, 0,  90, 100);
-    DrawScreenBorder(150, 0,  90, 245);
-    LCD_PutString(179, 10, (uint8_t*)"NEXT",   C_WHITE, C_BLACK);
-    LCD_PutString(167,100, (uint8_t*)"HISCORE",C_WHITE, C_BLACK);
-    LCD_PutString(176,135, (uint8_t*)"SCORE",  C_WHITE, C_BLACK);
-    LCD_PutString(178,165, (uint8_t*)"TIME",   C_WHITE, C_BLACK);
-    LCD_PutString(176,195, (uint8_t*)"LEVEL",  C_WHITE, C_BLACK);
-    LCD_PutString(173,245, (uint8_t*)"SW1 TO", C_WHITE, C_BLACK);
-    LCD_PutString(176,260, (uint8_t*)"PAUSE",  C_WHITE, C_BLACK);
-    LCD_PutString(173,275, (uint8_t*)"SW2 TO", C_WHITE, C_BLACK);
-    LCD_PutString(171,290, (uint8_t*)"RESTART",C_WHITE, C_BLACK);
+    DrawScreenBorder(150, 0,  90, 60);
+    DrawScreenBorder(150, 0,  90, 225);
+    LCD_PutString(179, 10, (uint8_t*)"NEXT",   0x0000, RIGHT_PANEL_BG_COLOR);
+    LCD_PutString(167,70, (uint8_t*)"TOP",    0x0000, RIGHT_PANEL_BG_COLOR);
+    LCD_PutString(167,105, (uint8_t*)"SCORE",  0x0000, RIGHT_PANEL_BG_COLOR);
+    LCD_PutString(167,137, (uint8_t*)"TIME",   0x0000, RIGHT_PANEL_BG_COLOR);
+    LCD_PutString(167,175, (uint8_t*)"LEVEL",  0x0000, RIGHT_PANEL_BG_COLOR);
+    LCD_PutString(167,235, (uint8_t*)"PAUSE",  0x01AF, RIGHT_PANEL_BG_COLOR);
+    LCD_PutString(167,250, (uint8_t*)"SW1",    0x0000, RIGHT_PANEL_BG_COLOR);
+    LCD_PutString(167,275, (uint8_t*)"RESTART",0x01AF, RIGHT_PANEL_BG_COLOR);
+    LCD_PutString(167,290, (uint8_t*)"SW2",    0x0000, RIGHT_PANEL_BG_COLOR);
     /* Draw the current session high score under its label. */
     sprintf(hiString, "%u", currentHighScore);
-    LCD_PutString(176, 115, (uint8_t*)hiString, C_WHITE, C_BLACK);
+    LCD_PutString(167, 85, (uint8_t*)hiString, 0x01AF, RIGHT_PANEL_BG_COLOR);
 }
 
 static void FillRect(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color)
@@ -178,7 +179,7 @@ static void DrawSkylinePanel(uint16_t x,
     pixel_h = h / START_SKYLINE_RGB565_H;
 
     if (pixel_w == 0 || pixel_h == 0) {
-        FillRect(x, y, w, h, 0x0000);
+        FillRect(x, y, w, h, UI_BG_COLOR);
         return;
     }
 
@@ -241,21 +242,21 @@ void DrawStartScreen(void)
 
 void DrawGameOverScreen(void)
 {
-    LCD_BlankArea(0, 0, LCD_W, LCD_H, C_BLACK);
-    LCD_PutString(80,10,(uint8_t*)"GAME OVER", C_YELLOW, C_BLACK);
-    LCD_PutString(70,250,(uint8_t*)"Press SW2 to restart", C_YELLOW, C_BLACK);
-    LCD_PutString(35,300,(uint8_t*)"Press SW1 for LeaderBoard", C_YELLOW, C_BLACK);
+    LCD_BlankArea(0, 0, LCD_W, LCD_H, UI_BG_COLOR);
+    LCD_PutString(80,10,(uint8_t*)"GAME OVER", C_YELLOW, UI_BG_COLOR);
+    LCD_PutString(70,250,(uint8_t*)"Press SW2 to restart", C_YELLOW, UI_BG_COLOR);
+    LCD_PutString(35,300,(uint8_t*)"Press SW1 for LeaderBoard", C_YELLOW, UI_BG_COLOR);
     /* Show the final score, level, and elapsed time. */
     char timeString[6];
     sprintf(timeString, "%02d:%02d", minutes, seconds);
-    LCD_PutString(105, 100, (uint8_t*)"TIME", C_WHITE, C_BLACK);
-    LCD_PutString(105, 130, (uint8_t*)timeString, C_WHITE, C_BLACK);
-    LCD_PutString(25, 100, (uint8_t*)"SCORE", C_WHITE, C_BLACK);
+    LCD_PutString(105, 100, (uint8_t*)"TIME", C_WHITE, UI_BG_COLOR);
+    LCD_PutString(105, 130, (uint8_t*)timeString, C_WHITE, UI_BG_COLOR);
+    LCD_PutString(25, 100, (uint8_t*)"SCORE", C_WHITE, UI_BG_COLOR);
     sprintf(acString, "%d", currentScore);
-    LCD_PutString(25, 130, (uint8_t*)acString, C_WHITE, C_BLACK);
-    LCD_PutString(185, 100, (uint8_t*)"LEVEL", C_WHITE, C_BLACK);
+    LCD_PutString(25, 130, (uint8_t*)acString, C_WHITE, UI_BG_COLOR);
+    LCD_PutString(185, 100, (uint8_t*)"LEVEL", C_WHITE, UI_BG_COLOR);
     sprintf(acString, "%d", level);
-    LCD_PutString(185, 130, (uint8_t*)acString, C_WHITE, C_BLACK);
+    LCD_PutString(185, 130, (uint8_t*)acString, C_WHITE, UI_BG_COLOR);
 }
 
 /* Draw the top leaderboard entries and restart prompt. */
@@ -267,12 +268,12 @@ void DrawLeaderboardScreen(void)
     uint16_t y;
 
     /* Clear the screen and draw the table header. */
-    LCD_BlankArea(0, 0, LCD_W, LCD_H, C_BLACK);
-    LCD_PutString(70,  10, (uint8_t*)"LEADERBOARD",      C_YELLOW, C_BLACK);
-    LCD_PutString( 10,  30, (uint8_t*)"Rank",            C_WHITE, C_BLACK);
-    LCD_PutString(55, 30, (uint8_t*)"Score",           C_WHITE, C_BLACK);
-    LCD_PutString(120,  30, (uint8_t*)"Level",           C_WHITE, C_BLACK);
-    LCD_PutString(180,  30, (uint8_t*)"Time",            C_WHITE, C_BLACK);
+    LCD_BlankArea(0, 0, LCD_W, LCD_H, UI_BG_COLOR);
+    LCD_PutString(70,  10, (uint8_t*)"LEADERBOARD",      C_YELLOW, UI_BG_COLOR);
+    LCD_PutString( 10,  30, (uint8_t*)"Rank",            C_WHITE, UI_BG_COLOR);
+    LCD_PutString(55, 30, (uint8_t*)"Score",           C_WHITE, UI_BG_COLOR);
+    LCD_PutString(120,  30, (uint8_t*)"Level",           C_WHITE, UI_BG_COLOR);
+    LCD_PutString(180,  30, (uint8_t*)"Time",            C_WHITE, UI_BG_COLOR);
 
     if (leaderboard_count < 10) {
         toShow = leaderboard_count;
@@ -284,17 +285,17 @@ void DrawLeaderboardScreen(void)
     {
         y = 50 + (uint16_t)i * 20;
         sprintf(entryString, "%2u", (uint16_t)(i + 1));
-        LCD_PutString( 10, y, (uint8_t*)entryString, C_WHITE, C_BLACK);
+        LCD_PutString( 10, y, (uint8_t*)entryString, C_WHITE, UI_BG_COLOR);
         sprintf(entryString, "%5u", leaderboard[i].score);
-        LCD_PutString( 55, y, (uint8_t*)entryString, C_WHITE, C_BLACK);
+        LCD_PutString( 55, y, (uint8_t*)entryString, C_WHITE, UI_BG_COLOR);
         sprintf(entryString, "L%1u", leaderboard[i].level);
-        LCD_PutString(120, y, (uint8_t*)entryString, C_WHITE, C_BLACK);
+        LCD_PutString(120, y, (uint8_t*)entryString, C_WHITE, UI_BG_COLOR);
         sprintf(entryString, "%02u:%02u",
                 leaderboard[i].minutes,
                 leaderboard[i].seconds);
-        LCD_PutString(180, y, (uint8_t*)entryString, C_WHITE, C_BLACK);
+        LCD_PutString(180, y, (uint8_t*)entryString, C_WHITE, UI_BG_COLOR);
     }
 
     /* Keep restart instructions visible at the bottom of the screen. */
-    LCD_PutString( 60, 300, (uint8_t*)"SW2 TO RESTART",    C_WHITE, C_BLACK);
+    LCD_PutString( 60, 300, (uint8_t*)"SW2 TO RESTART",    C_WHITE, UI_BG_COLOR);
 }

@@ -14,8 +14,8 @@
 #define NEXT_X        150
 #define NEXT_Y          0
 #define NEXT_W         90
-#define NEXT_H        100
-// height of the 8×16 “NEXT” label
+#define NEXT_H         60
+// height of the 8?16 ?NEXT? label
 #define NEXT_LABEL_H   16
 #include <stdint.h>
 #include "tetromino_spawn.h"

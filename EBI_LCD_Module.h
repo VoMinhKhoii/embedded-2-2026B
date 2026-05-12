@@ -16,7 +16,7 @@
 
 /* Standard RGB565 colors. */
 #define C_WHITE     0xFFFF
-#define C_BLACK     0x0000
+#define C_BLACK     0xAFB7
 #define C_BLUE      0x001F
 #define C_BLUE2     0x051F
 #define C_RED       0xF800

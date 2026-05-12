@@ -2,6 +2,38 @@
 #include "game_screens.h"
 #include "tetris_draw.h"
 uint8_t playfield[PLAYFIELD_COLS][PLAYFIELD_ROWS];
+
+static uint16_t GetPlayfieldCellColor(int col, int row)
+{
+    return ((col + row) & 1) ? PLAYFIELD_ALT_BG_COLOR : UI_BG_COLOR;
+}
+
+void DrawPlayfieldBackground(void)
+{
+    int c, r;
+
+    for (c = 0; c < PLAYFIELD_COLS; c++) {
+        for (r = 0; r < PLAYFIELD_ROWS; r++) {
+            LCD_BlankArea(PLAYFIELD_LEFT + c * STONE_BLOCK,
+                          PLAYFIELD_TOP + r * STONE_BLOCK,
+                          STONE_BLOCK,
+                          STONE_BLOCK,
+                          GetPlayfieldCellColor(c, r));
+        }
+    }
+}
+
+void DrawPlayfieldCellBackground(uint16_t x, uint16_t y)
+{
+    int col = ((int)x - PLAYFIELD_LEFT) / STONE_BLOCK;
+    int row = ((int)y - PLAYFIELD_TOP) / STONE_BLOCK;
+
+    if (col < 0 || col >= PLAYFIELD_COLS || row < 0 || row >= PLAYFIELD_ROWS) {
+        return;
+    }
+
+    LCD_BlankArea(x, y, STONE_BLOCK, STONE_BLOCK, GetPlayfieldCellColor(col, row));
+}
  
 void ClearPlayfield(void)
 {
@@ -13,27 +45,15 @@ void ClearPlayfield(void)
 
     locked_block_count = 0;
 
-    /* Clear the visible playfield area on the LCD. */
-    LCD_BlankArea(
-      PLAYFIELD_LEFT,
-      PLAYFIELD_TOP,
-      PLAYFIELD_COLS * STONE_BLOCK,
-      PLAYFIELD_ROWS * STONE_BLOCK,
-      C_BLACK
-    );
+    /* Redraw the visible playfield area using the checker background. */
+    DrawPlayfieldBackground();
 }
 void RedrawPlayfield(void)
 {
     int i;
 
     /* Clear only the board interior before redrawing locked blocks. */
-    LCD_BlankArea(
-      PLAYFIELD_LEFT,
-      PLAYFIELD_TOP,
-      PLAYFIELD_COLS * STONE_BLOCK,
-      PLAYFIELD_ROWS * STONE_BLOCK,
-      C_BLACK
-    );
+    DrawPlayfieldBackground();
 
     for (i = 0; i < locked_block_count; i++)
     {

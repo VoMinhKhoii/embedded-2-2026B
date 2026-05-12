@@ -21,6 +21,8 @@ static LockedBlock locked_blocks[MAX_LOCKED_BLOCKS];
 static int locked_block_count = 0;
 void ClearPlayfield(void);
 void RedrawPlayfield(void);
+void DrawPlayfieldBackground(void);
+void DrawPlayfieldCellBackground(uint16_t x, uint16_t y);
 uint8_t CanPlaceTetromino(TetrominoType t,
                           uint16_t x, uint16_t y, uint8_t rot);
 uint8_t CanMoveDown(TetrominoType t,

@@ -1,6 +1,7 @@
 // tetris_draw.c
 #include "tetris_draw.h"
 #include "EBI_LCD_Module.h"
+#include "game_screens.h"
 #include "playfield.h"
 
 #define STONE_BLOCK 10
@@ -12,7 +13,7 @@ static const uint16_t colorOf[7] = {
     COLOR_Z
 };
  
-// dx,dy offsets for each piece (I=0�Z=6), each rotation 0�3, each of 4 blocks
+// dx,dy offsets for each piece (I=0?Z=6), each rotation 0?3, each of 4 blocks
 
 void DrawTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
 {
@@ -41,15 +42,15 @@ void ClearTetromino(TetrominoType t, uint16_t x, uint16_t y, uint8_t rot)
         dy = tetro[t][rot][i][1];
         px = x + dx * STONE_BLOCK;
         py = y + dy * STONE_BLOCK;
-        LCD_BlankArea(px, py, STONE_BLOCK, STONE_BLOCK, C_BLACK);
+        DrawPlayfieldCellBackground(px, py);
     }
 }
 
 void DrawNextTetromino(TetrominoType t)
 {
-    // carve out exactly the interior under �NEXT� but inside the 10px stone border
+    // carve out exactly the interior under ?NEXT? but inside the 10px stone border
     const int16_t innerX = NEXT_X + STONE_BLOCK;
-    const int16_t innerY = NEXT_Y + STONE_BLOCK + NEXT_LABEL_H;
+    const int16_t innerY = NEXT_Y + NEXT_LABEL_H + 5;
     const int16_t innerW = NEXT_W  - 2*STONE_BLOCK;
     const int16_t innerH = NEXT_H  - NEXT_LABEL_H - 2*STONE_BLOCK;
 
@@ -59,7 +60,7 @@ void DrawNextTetromino(TetrominoType t)
         innerY,
         innerW,
         innerH,
-        C_BLACK
+        RIGHT_PANEL_BG_COLOR
     );
 
     // 2) compute the spawn-rotation (rot=0) bounds of this tetromino
@@ -93,6 +94,9 @@ void DrawNextTetromino(TetrominoType t)
         // 3) draw the next piece (rotation=0)
         DrawTetromino(t, drawX, drawY, 0);
     }
+
+    /* Restore the label because the preview clear area now overlaps it. */
+    LCD_PutString(179, 10, (uint8_t *)"NEXT", 0x0000, RIGHT_PANEL_BG_COLOR);
 }
 void DrawBlock(uint16_t x, uint16_t y, TetrominoType type)
 {
