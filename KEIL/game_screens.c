@@ -1,5 +1,7 @@
 #include "game_screens.h"
 #include "EBI_LCD_Module.h"
+#include "start_logo_rgb565.h"
+#include "start_skyline_rgb565.h"
 #include <stdio.h>
 uint16_t currentScore = 0;
 uint8_t  level        = 1;
@@ -108,14 +110,132 @@ void DrawGameplayScreen(void)
     LCD_PutString(176, 115, (uint8_t*)hiString, C_WHITE, C_BLACK);
 }
 
+static void FillRect(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint16_t color)
+{
+    LCD_BlankArea(x, y, w, h, color);
+}
+
+static uint16_t MapLogoColor(uint16_t raw_color)
+{
+    switch (raw_color) {
+    case 151:
+        return 0xAFB7;
+    case 214:
+        return 0x571D;
+    case 100:
+        return 0x0374;
+    case 41:
+        return 0x04B8;
+    case 6:
+        return 0x05DB;
+    case 0:
+    default:
+        return 0x4A89;
+    }
+}
+
+static void DrawTetrisLogo(uint16_t x, uint16_t y)
+{
+    uint16_t pixel_w;
+    uint16_t row;
+    uint16_t col;
+
+    pixel_w = 212 / START_LOGO_RGB565_W;
+    if (pixel_w == 0) {
+        pixel_w = 1;
+    }
+
+    for (row = 0; row < START_LOGO_RGB565_H; row++) {
+        for (col = 0; col < START_LOGO_RGB565_W; col++) {
+            FillRect(x + col * pixel_w,
+                     y + row,
+                     pixel_w,
+                     1,
+                     MapLogoColor(start_logo_rgb565[row * START_LOGO_RGB565_W + col]));
+        }
+    }
+}
+
+static void DrawSkylinePanel(uint16_t x,
+                             uint16_t y,
+                             uint16_t w,
+                             uint16_t h,
+                             uint16_t light,
+                             uint16_t mid,
+                             uint16_t dark,
+                             uint16_t ink)
+{
+    uint16_t pixel_w;
+    uint16_t pixel_h;
+    uint16_t row;
+    uint16_t col;
+    (void)light;
+    (void)mid;
+    (void)dark;
+    (void)ink;
+
+    pixel_w = w / START_SKYLINE_RGB565_W;
+    pixel_h = h / START_SKYLINE_RGB565_H;
+
+    if (pixel_w == 0 || pixel_h == 0) {
+        FillRect(x, y, w, h, 0x0000);
+        return;
+    }
+
+    for (row = 0; row < START_SKYLINE_RGB565_H; row++) {
+        for (col = 0; col < START_SKYLINE_RGB565_W; col++) {
+            FillRect(x + col * pixel_w,
+                     y + row * pixel_h,
+                     pixel_w,
+                     pixel_h,
+                     start_skyline_rgb565[row * START_SKYLINE_RGB565_W + col]);
+        }
+    }
+}
+
+static void DrawMenuLane(uint16_t x, uint16_t y, uint16_t w, uint16_t dark, uint16_t light)
+{
+    (void)dark;
+    FillRect(x, y, w, 18, light);
+}
+
 
 void DrawStartScreen(void)
 {
-		LCD_BlankArea(0, 0, LCD_W, LCD_H, C_BLACK);
-		LCD_PutString(85,10,(uint8_t*)"TETRIS ", C_YELLOW, C_BLACK);
-		LCD_PutString(0,160,(uint8_t*)"\tPress SW1 to start",       C_YELLOW, C_BLACK);
-		LCD_PutString(0,234,(uint8_t*)"Nguyen Tri Khai - s3921136",       C_BLUE2, C_BLACK);
-		LCD_PutString(0,250,(uint8_t*)"Le Nguyen Hao - s3963228",       C_BLUE2, C_BLACK);
+    static const uint16_t bg_light = 0xAFB7;
+    static const uint16_t bg_mid   = 0x8E0E;
+    static const uint16_t bg_dark  = 0x334A;
+    static const uint16_t ink_dark = 0x08C3;
+    static const uint16_t ink_soft = 0x334A;
+    static const uint16_t ink_pale = 0xAFB7;
+
+    FillRect(0, 0, LCD_W, LCD_H, bg_light);
+    FillRect(6, 6, 228, 308, ink_dark);
+    FillRect(10, 10, 220, 300, ink_pale);
+
+    /* Title band and logo. */
+    FillRect(14, 14, 212, 52, ink_soft);
+    DrawTetrisLogo(14, 16);
+
+    /* Main art panel. */
+    DrawSkylinePanel(14, 70, 212, 102, bg_mid, ink_soft, bg_dark, ink_dark);
+
+    /* Menu lanes inspired by the original 1P/2P strip. */
+    DrawMenuLane(14, 180, 94, ink_dark, ink_pale);
+    DrawMenuLane(132, 180, 94, ink_dark, ink_pale);
+    LCD_PutString(22, 184, (uint8_t *)"Start Game", ink_dark, ink_pale);
+    LCD_PutString(140, 184, (uint8_t *)"Auto Play", ink_dark, ink_pale);
+    LCD_PutString(40, 202, (uint8_t *)"SW1", ink_dark, ink_pale);
+    LCD_PutString(168, 202, (uint8_t *)"SW2", ink_dark, ink_pale);
+
+    /* Team credits. */
+    LCD_PutString(96, 228, (uint8_t *)"Team 8", ink_dark, ink_pale);
+    LCD_PutString(18, 248, (uint8_t *)"Tran Tu Tam", ink_dark, ink_pale);
+    LCD_PutString(160, 248, (uint8_t *)"S3999159", ink_dark, ink_pale);
+    LCD_PutString(18, 266, (uint8_t *)"Vo Minh Khoi", ink_dark, ink_pale);
+    LCD_PutString(160, 266, (uint8_t *)"S3991730", ink_dark, ink_pale);
+    LCD_PutString(18, 284, (uint8_t *)"Doan Phuc Khoa", ink_dark, ink_pale);
+    LCD_PutString(160, 284, (uint8_t *)"S3927381", ink_dark, ink_pale);
 }
 
 
